@@ -1,9 +1,10 @@
+import { DataTable } from "@/components/data-table";
+import Features from "@/components/features-2";
+import FeaturesSection from "@/components/features-6";
+import { Table } from "@/components/ui/table";
+
 export default function Page() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-100 p-8">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-800">admin/users</h1>
-      </div>
-    </main>
+  <FeaturesSection />
   );
 }
