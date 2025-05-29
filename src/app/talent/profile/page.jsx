@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
 import { Camera } from 'lucide-react';
@@ -18,25 +18,31 @@ export default function TalentProfileSetup() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 flex items-center justify-center p-6">
-      <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 w-full max-w-2xl shadow-2xl text-white space-y-6">
-        <h1 className="text-3xl font-semibold text-center">Profile Setup</h1>
-        <p className="text-sm text-center text-gray-300">Tell us more about yourself</p>
-        < ModeToggle />
+    <div className="min-h-screen flex items-center justify-center p-4 bg-white text-black dark:bg-gray-950 dark:text-white transition-colors duration-300 relative">
+      
+      {/* ✅ ModeToggle positioned at the top-right of the page */}
+      <div className="absolute top-4 right-4 z-10">
+        <ModeToggle />
+      </div>
 
-        {/* Profile Picture */}
+      {/* Card container */}
+      <div className="bg-white/80 dark:bg-white/5 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-xl p-6 w-full max-w-xl shadow-2xl space-y-5 transition-colors duration-300">
+        <h1 className="text-2xl font-semibold text-center">Profile Setup</h1> {/* Decreased text size */}
+        <p className="text-xs text-center text-gray-600 dark:text-gray-300">Tell us more about yourself</p> {/* Decreased text size */}
+
+        {/* Profile Picture Upload */}
         <div className="flex justify-center">
-          <div className="relative w-28 h-28">
+          <div className="relative w-24 h-24"> {/* Decreased size */}
             <img
               src={profileImage || '/default-avatar.png'}
               alt="Profile"
-              className="w-full h-full object-cover rounded-full border-2 border-white/20"
+              className="w-full h-full object-cover rounded-full border-2 border-gray-300 dark:border-white/20"
             />
             <label
               htmlFor="profile-upload"
               className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-full cursor-pointer"
             >
-              <Camera size={20} className="text-white" />
+              <Camera size={18} className="text-white" /> {/* Decreased icon size */}
               <input
                 type="file"
                 accept="image/*"
@@ -48,22 +54,22 @@ export default function TalentProfileSetup() {
           </div>
         </div>
 
-        <form className="space-y-5">
+        <form className="space-y-4"> {/* Decreased space between form elements */}
           {/* Bio */}
           <div>
-            <label className="block mb-1 text-sm text-gray-300">Bio</label>
+            <label className="block mb-1 text-sm text-gray-700 dark:text-gray-300">Bio</label>
             <textarea
-              rows={4}
+              rows={3} // Decreased rows
               placeholder="Write a short bio about your experience and interests..."
-              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 resize-none"
+              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/10 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 resize-none text-sm" // Decreased padding and text size
             />
           </div>
 
           {/* Categories */}
           <div>
-            <label className="block mb-1 text-sm text-gray-300">Categories</label>
+            <label className="block mb-1 text-sm text-gray-700 dark:text-gray-300">Categories</label>
             <select
-              className="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white border border-gray-300 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm" // Decreased padding and text size
               defaultValue=""
             >
               <option value="" disabled>Select a category</option>
@@ -77,29 +83,29 @@ export default function TalentProfileSetup() {
 
           {/* City */}
           <div>
-            <label className="block mb-1 text-sm text-gray-300">City</label>
+            <label className="block mb-1 text-sm text-gray-700 dark:text-gray-300">City</label>
             <input
               type="text"
               placeholder="Hyderabad, Mumbai, Delhi..."
-              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/10 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm" // Decreased padding and text size
             />
           </div>
 
           {/* Skills */}
           <div>
-            <label className="block mb-1 text-sm text-gray-300">Skills</label>
+            <label className="block mb-1 text-sm text-gray-700 dark:text-gray-300">Skills</label>
             <input
               type="text"
               placeholder="e.g., video editing, photography, public speaking"
-              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/10 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm" // Decreased padding and text size
             />
-            <p className="text-xs text-gray-400 mt-1">Comma-separated skills</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Comma-separated skills</p>
           </div>
 
           {/* Save Button */}
           <button
             type="button"
-            className="w-full bg-purple-600 hover:bg-purple-700 transition-all py-3 rounded-lg font-semibold text-white"
+            className="w-full bg-purple-600 hover:bg-purple-700 transition-all py-2 rounded-lg font-semibold text-white text-sm" // Decreased padding and text size
           >
             Save Profile
           </button>

@@ -4,8 +4,10 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 
 export default function TalentRegister() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-white text-black dark:bg-gray-900 dark:text-white">
-      <div className="relative bg-gray-50 border border-gray-200 dark:bg-white/5 dark:border-white/10 backdrop-blur-lg rounded-2xl p-8 w-full max-w-lg shadow-2xl space-y-6 text-gray-800 dark:text-white">
+    <div className="min-h-screen flex items-center justify-center p-6 bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+      <div className="relative bg-white border border-gray-200 dark:bg-white/10 dark:border-white/10 backdrop-blur-lg rounded-2xl p-8 w-full max-w-lg shadow-2xl space-y-6 transition-colors duration-300">
+        
+        {/* Mode toggle button */}
         <div className="absolute top-4 right-4">
           <ModeToggle />
         </div>
@@ -22,7 +24,7 @@ export default function TalentRegister() {
             <input
               type="text"
               placeholder="John Doe"
-              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-black placeholder-gray-500 dark:bg-white/10 dark:border-white/10 dark:text-white dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full px-4 py-3 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/20 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
             />
           </div>
 
@@ -32,7 +34,7 @@ export default function TalentRegister() {
             <input
               type="email"
               placeholder="john@example.com"
-              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-black placeholder-gray-500 dark:bg-white/10 dark:border-white/10 dark:text-white dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full px-4 py-3 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/20 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
             />
           </div>
 
@@ -42,7 +44,7 @@ export default function TalentRegister() {
             <input
               type="tel"
               placeholder="+91 9876543210"
-              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-black placeholder-gray-500 dark:bg-white/10 dark:border-white/10 dark:text-white dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full px-4 py-3 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/20 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
             />
           </div>
 

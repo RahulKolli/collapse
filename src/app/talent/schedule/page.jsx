@@ -7,19 +7,21 @@ export default function MeetingScheduling() {
   const [meetingType, setMeetingType] = useState('call');
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 dark:from-gray-900 dark:to-gray-950 p-6 text-white dark:text-gray-900 flex items-center justify-center">
+    // Main container: Now light by default, displays darker colors in "dark" mode.
+    <div className="relative min-h-screen bg-gradient-to-br from-gray-200 to-gray-100 p-6 text-gray-900 dark:from-gray-950 dark:to-gray-900 dark:text-white flex items-center justify-center">
       {/* ModeToggle in top-right corner */}
       <div className="absolute top-4 right-4 z-10">
         <ModeToggle />
       </div>
 
-      <div className="max-w-md w-full bg-white/5 dark:bg-gray-800 backdrop-blur-lg border border-white/10 dark:border-gray-700 rounded-2xl p-8 space-y-6 shadow-lg text-white dark:text-gray-100">
-        <h1 className="text-3xl font-semibold text-center text-white dark:text-white">Schedule a Meeting</h1>
+      {/* Card container: Now light by default, displays darker colors in "dark" mode. */}
+      <div className="max-w-md w-full bg-white/70 dark:bg-white/5 backdrop-blur-lg border border-gray-300 dark:border-white/10 rounded-2xl p-8 space-y-6 shadow-lg text-gray-900 dark:text-white">
+        <h1 className="text-3xl font-semibold text-center text-gray-900 dark:text-white">Schedule a Meeting</h1>
 
         <form className="space-y-5">
-          {/* Meeting Type */}
+          {/* Meeting Type Label: Light by default, slightly darker in "dark" mode */}
           <div>
-            <label className="block text-gray-300 dark:text-gray-400 mb-2 font-medium">Meeting Type</label>
+            <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Meeting Type</label>
             <div className="flex gap-6">
               <label className="inline-flex items-center cursor-pointer">
                 <input
@@ -28,7 +30,7 @@ export default function MeetingScheduling() {
                   value="call"
                   checked={meetingType === 'call'}
                   onChange={() => setMeetingType('call')}
-                  className="form-radio text-purple-600 dark:text-purple-500" // Adjusted for dark mode
+                  className="form-radio text-purple-600 dark:text-purple-500"
                 />
                 <span className="ml-2">Call</span>
               </label>
@@ -39,55 +41,55 @@ export default function MeetingScheduling() {
                   value="in-person"
                   checked={meetingType === 'in-person'}
                   onChange={() => setMeetingType('in-person')}
-                  className="form-radio text-purple-600 dark:text-purple-500" // Adjusted for dark mode
+                  className="form-radio text-purple-600 dark:text-purple-500"
                 />
                 <span className="ml-2">In-Person</span>
               </label>
             </div>
           </div>
 
-          {/* Date */}
+          {/* Date Input: Light by default, displays darker colors in "dark" mode. */}
           <div>
-            <label className="block text-gray-300 dark:text-gray-400 mb-2 font-medium">Select Date</label>
+            <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Select Date</label>
             <input
               type="date"
-              className="w-full p-3 rounded-lg bg-white/10 border border-white/10 text-white
-                         dark:bg-gray-700 dark:text-white dark:border-gray-600
+              className="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 text-gray-900
+                         dark:bg-white/10 dark:text-white dark:border-white/10
                          focus:outline-none focus:ring-2 focus:ring-purple-600"
             />
           </div>
 
-          {/* Time */}
+          {/* Time Input: Light by default, displays darker colors in "dark" mode. */}
           <div>
-            <label className="block text-gray-300 dark:text-gray-400 mb-2 font-medium">Select Time</label>
+            <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Select Time</label>
             <input
               type="time"
-              className="w-full p-3 rounded-lg bg-white/10 border border-white/10 text-white
-                         dark:bg-gray-700 dark:text-white dark:border-gray-600
+              className="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 text-gray-900
+                         dark:bg-white/10 dark:text-white dark:border-white/10
                          focus:outline-none focus:ring-2 focus:ring-purple-600"
             />
           </div>
 
-          {/* Location */}
+          {/* Location Input (conditional): Light by default, displays darker colors in "dark" mode. */}
           {meetingType === 'in-person' && (
             <div>
-              <label className="block text-gray-300 dark:text-gray-400 mb-2 font-medium">Meeting Location</label>
+              <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Meeting Location</label>
               <input
                 type="text"
                 placeholder="Enter location address"
-                className="w-full p-3 rounded-lg bg-white/10 border border-white/10 placeholder-gray-400 text-white
-                           dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:placeholder-gray-500
+                className="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900
+                           dark:bg-white/10 dark:text-white dark:border-white/10 dark:placeholder-gray-400
                            focus:outline-none focus:ring-2 focus:ring-purple-600"
               />
             </div>
           )}
 
-          {/* Submit Button */}
+          {/* Submit Button: Dark purple by default, slightly lighter in "dark" mode. */}
           <button
             type="button"
             onClick={() => alert('Meeting scheduled!')}
-            className="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg font-semibold text-white
-                       dark:bg-purple-700 dark:hover:bg-purple-800 dark:text-white transition-all"
+            className="w-full bg-purple-700 hover:bg-purple-800 py-3 rounded-lg font-semibold text-white
+                       dark:bg-purple-600 dark:hover:bg-purple-700 dark:text-white transition-all"
           >
             Schedule Meeting
           </button>

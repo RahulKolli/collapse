@@ -41,7 +41,8 @@ export default function RatingsReviewHistory() {
         <svg
           key={i}
           className={`w-5 h-5 transition-all duration-200 ${
-            i < count ? 'text-yellow-400' : 'text-gray-500 dark:text-gray-600'
+            // Stars: Always yellow for filled. Empty stars are gray-400 (default/dark visual), gray-500 (dark mode/light visual).
+            i < count ? 'text-yellow-400' : 'text-gray-400 dark:text-gray-500'
           }`}
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -52,37 +53,58 @@ export default function RatingsReviewHistory() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white p-6">
+    // Main container:
+    // By default (no 'dark' class on HTML), it's the DARKER visual theme.
+    // When 'dark' class IS present on HTML, it's the LIGHTER visual theme.
+    <div className="min-h-screen bg-gray-900 text-white p-6 relative
+                    dark:bg-white dark:text-black">
+      
+      {/* ModeToggle positioned at the top-right corner */}
+      <div className="absolute top-4 right-4 z-10">
+        <ModeToggle />
+      </div>
+
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-semibold">Ratings & Review History</h1>
-          <ModeToggle />
         </div>
         {reviews.length === 0 ? (
-          <p className="text-center text-gray-500 dark:text-gray-400">No reviews yet.</p>
+          // Text for no reviews: Color matches the current visual theme's secondary text.
+          <p className="text-center text-gray-400 dark:text-gray-500">No reviews yet.</p>
         ) : (
           <ul className="space-y-6">
             {reviews.map(({ id, brand, rating, comment, date, user, avatar }) => (
               <li
                 key={id}
-                className="bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-xl p-6 backdrop-blur-md shadow-md hover:shadow-xl transition-all"
+                // Review card:
+                // Default (darker visual theme): Dark background with subtle border, shadow.
+                // Dark mode active (lighter visual theme): Light background with subtle border, shadow.
+                // Hover effect: Shadow increases, correctly reversed.
+                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-md transition-all
+                           hover:shadow-lg /* Hover for default (DARKER visual) theme */
+                           dark:bg-gray-100 dark:border-gray-300 dark:shadow-md dark:hover:shadow-xl /* Hover for dark mode active (LIGHTER visual) theme */"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-4">
                     <img
                       src={avatar}
                       alt={user}
+                      // Avatar border: Remains consistent purple.
                       className="w-12 h-12 rounded-full border-2 border-purple-600 shadow"
                     />
                     <div>
-                      <h2 className="text-lg font-semibold">{brand}</h2>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">{user}</p>
+                      {/* Brand name: White in darker visual theme, black in lighter visual theme. */}
+                      <h2 className="text-lg font-semibold text-white dark:text-black">{brand}</h2>
+                      {/* User name: Gray in darker visual theme, darker gray in lighter visual theme. */}
+                      <p className="text-sm text-gray-400 dark:text-gray-600">{user}</p>
                     </div>
                   </div>
                   <div className="flex">{renderStars(rating)}</div>
                 </div>
-                <p className="text-gray-700 dark:text-gray-300 mb-2">{comment}</p>
-                <p className="text-xs text-gray-500 italic">{date}</p>
+                {/* Comment text: Light gray in darker visual theme, darker gray in lighter visual theme. */}
+                <p className="text-gray-300 dark:text-gray-700 mb-2">{comment}</p>
+                {/* Date text: Consistent gray in both visual themes. */}
+                <p className="text-xs text-gray-500 italic dark:text-gray-500">{date}</p>
               </li>
             ))}
           </ul>
