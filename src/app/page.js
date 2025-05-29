@@ -11,15 +11,13 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-<<<<<<< Updated upstream
+
       < Features />
       < FeaturesSection />
       < FooterSection />
      
       
-      
-=======
->>>>>>> Stashed changes
+
       
     </>
   );
