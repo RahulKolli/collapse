@@ -46,22 +46,22 @@ const data = {
       icon: IconDashboard,
     },
     {
-      title: "Lifecycle",
+      title: "Users List",
       url: "#",
       icon: IconListDetails,
     },
     {
-      title: "Analytics",
-      url: "#",
+      title: "Chatlogs",
+      url: "/admin/users",
       icon: IconChartBar,
     },
     {
-      title: "Projects",
+      title: "Gig monitor",
       url: "#",
       icon: IconFolder,
     },
     {
-      title: "Team",
+      title: "Disputes",
       url: "#",
       icon: IconUsers,
     },
