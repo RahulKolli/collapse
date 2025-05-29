@@ -1,9 +1,7 @@
+import FeaturesSection from "@/components/features-8";
+
 export default function Page() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-100 p-8">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-800">admin/wallet</h1>
-      </div>
-    </main>
+    < FeaturesSection />
   );
 }

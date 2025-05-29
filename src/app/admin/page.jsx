@@ -1,9 +1,9 @@
-export default function Page() {
+import React from 'react'
+
+function AdminPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-100 p-8">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-800">admin</h1>
-      </div>
-    </main>
-  );
+    <div>AdminPage</div>
+  )
 }
+
+export default AdminPage
