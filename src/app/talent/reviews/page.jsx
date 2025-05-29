@@ -1,4 +1,7 @@
+'use client'
+
 import React from 'react';
+import { ModeToggle } from '@/components/ui/mode-toggle';
 
 export default function RatingsReviewHistory() {
   const reviews = [
@@ -38,7 +41,7 @@ export default function RatingsReviewHistory() {
         <svg
           key={i}
           className={`w-5 h-5 transition-all duration-200 ${
-            i < count ? 'text-yellow-400' : 'text-gray-600'
+            i < count ? 'text-yellow-400' : 'text-gray-500 dark:text-gray-600'
           }`}
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -49,17 +52,20 @@ export default function RatingsReviewHistory() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 p-6 text-white">
+    <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white p-6">
       <div className="max-w-4xl mx-auto space-y-8">
-        <h1 className="text-3xl font-semibold text-center">Ratings & Review History</h1>
+        <div className="flex justify-between items-center">
+          <h1 className="text-3xl font-semibold">Ratings & Review History</h1>
+          <ModeToggle />
+        </div>
         {reviews.length === 0 ? (
-          <p className="text-center text-gray-400">No reviews yet.</p>
+          <p className="text-center text-gray-500 dark:text-gray-400">No reviews yet.</p>
         ) : (
           <ul className="space-y-6">
             {reviews.map(({ id, brand, rating, comment, date, user, avatar }) => (
               <li
                 key={id}
-                className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-md shadow-md hover:shadow-xl transition-all"
+                className="bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-xl p-6 backdrop-blur-md shadow-md hover:shadow-xl transition-all"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-4">
@@ -70,12 +76,12 @@ export default function RatingsReviewHistory() {
                     />
                     <div>
                       <h2 className="text-lg font-semibold">{brand}</h2>
-                      <p className="text-sm text-gray-400">{user}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{user}</p>
                     </div>
                   </div>
                   <div className="flex">{renderStars(rating)}</div>
                 </div>
-                <p className="text-gray-300 mb-2">{comment}</p>
+                <p className="text-gray-700 dark:text-gray-300 mb-2">{comment}</p>
                 <p className="text-xs text-gray-500 italic">{date}</p>
               </li>
             ))}

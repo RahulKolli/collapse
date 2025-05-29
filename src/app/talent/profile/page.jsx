@@ -1,7 +1,8 @@
-'use client';
+'use client'
 
 import { useState } from 'react';
 import { Camera } from 'lucide-react';
+import { ModeToggle } from '@/components/ui/mode-toggle';
 
 export default function TalentProfileSetup() {
   const [profileImage, setProfileImage] = useState(null);
@@ -21,6 +22,7 @@ export default function TalentProfileSetup() {
       <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 w-full max-w-2xl shadow-2xl text-white space-y-6">
         <h1 className="text-3xl font-semibold text-center">Profile Setup</h1>
         <p className="text-sm text-center text-gray-300">Tell us more about yourself</p>
+        < ModeToggle />
 
         {/* Profile Picture */}
         <div className="flex justify-center">
