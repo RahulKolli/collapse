@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Camera } from 'lucide-react';
-import { ModeToggle } from '@/components/ui/mode-toggle';
+// import { ModeToggle } from '@/components/ui/mode-toggle';
 
 export default function TalentProfileSetup() {
   const [profileImage, setProfileImage] = useState(null);
@@ -22,7 +22,7 @@ export default function TalentProfileSetup() {
       
       {/* ✅ ModeToggle positioned at the top-right of the page */}
       <div className="absolute top-4 right-4 z-10">
-        <ModeToggle />
+        {/* <ModeToggle /> */}
       </div>
 
       {/* Card container */}
