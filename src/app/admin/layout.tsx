@@ -13,13 +13,15 @@ export default function DashboardLayout({ children }) {
         "--header-height": "calc(var(--spacing) * 12)",
       }}
     >
-      <AppSidebar variant="inset" />
-      <SidebarInset>
-        <SiteHeader />
-        <main className="flex-1 overflow-auto p-4">
-          {children}
-        </main>
-      </SidebarInset>
+      <div className="flex w-full min-h-screen overflow-x-hidden">
+        <AppSidebar variant="inset" />
+        <SidebarInset className={undefined}>
+          <SiteHeader />
+          <main className="flex-1 overflow-y-auto p-4">
+            {children}
+          </main>
+        </SidebarInset>
+      </div>
     </SidebarProvider>
   );
 }
