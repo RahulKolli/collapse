@@ -1,5 +1,6 @@
 import { Cpu, Lock, Sparkles, Zap } from 'lucide-react'
 import Image from 'next/image'
+import { ChartAreaInteractive } from './chart-area-interactive';
 
 export default function FeaturesSection() {
     return (
@@ -13,25 +14,8 @@ export default function FeaturesSection() {
                 <div className="relative rounded-3xl p-3 md:-mx-8 lg:col-span-3">
                     <div className="aspect-88/36 relative">
                         <div
-                            className="bg-linear-to-t z-1 from-background absolute inset-0 to-transparent"></div>
-                        <Image
-                            src="/assets/images/charts.webp"
-                            className="absolute inset-0 z-10"
-                            alt="payments illustration dark"
-                            width={2797}
-                            height={1137} />
-                        <Image
-                            src="/assets/images/charts.webp"
-                            className="hidden dark:block"
-                            alt="payments illustration dark"
-                            width={2797}
-                            height={1137} />
-                        <Image
-                            src="/assets/images/charts.webp"
-                            className="dark:hidden"
-                            alt="payments illustration light"
-                            width={2797}
-                            height={1137} />
+                            className=""></div>
+                       < ChartAreaInteractive />
                     </div>
                 </div>
                 <div
