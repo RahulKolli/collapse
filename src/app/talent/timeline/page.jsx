@@ -1,6 +1,10 @@
 'use client';
 
+import { useState } from 'react';
 import { useParams } from 'next/navigation';
+import { ModeToggle } from '@/components/ui/mode-toggle';
+import { motion } from 'framer-motion';
+import { CheckCircle, Clock, Loader } from 'lucide-react';
 
 export default function GigTimeline() {
   const params = useParams();
@@ -16,29 +20,50 @@ export default function GigTimeline() {
   ];
 
   const statusColor = {
-    done: 'bg-green-600',
-    'in-progress': 'bg-yellow-500',
-    upcoming: 'bg-gray-500',
+    done: 'text-green-500 border-green-500',
+    'in-progress': 'text-yellow-500 border-yellow-500',
+    upcoming: 'text-gray-400 border-gray-400',
+  };
+
+  const statusIcon = {
+    done: <CheckCircle className="w-6 h-6" />,
+    'in-progress': <Loader className="w-6 h-6 animate-spin" />,
+    upcoming: <Clock className="w-6 h-6" />,
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 p-6 text-white">
-      <div className="max-w-3xl mx-auto space-y-6">
-        <h1 className="text-3xl font-semibold text-center">Gig Timeline</h1>
-        <p className="text-center text-sm text-gray-400">
-          Tracking progress for gig ID: <span className="text-white">{id}</span>
+    <div className="min-h-screen p-6 bg-white text-black transition-colors duration-300 relative dark:bg-gradient-to-br dark:from-gray-950 dark:to-gray-900 dark:text-white">
+      <div className="absolute top-4 right-4 z-10">
+        <ModeToggle />
+      </div>
+
+      <div className="max-w-6xl mx-auto space-y-10">
+        <h1 className="text-3xl font-semibold text-center text-black dark:text-white">Gig Timeline</h1>
+        <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+          Tracking progress for gig ID: <span className="text-black dark:text-white">{id}</span>
         </p>
 
-        <div className="relative border-l border-white/20 mt-10 ml-4">
+        <div className="flex items-center overflow-x-auto space-x-10 px-4">
           {steps.map((step, index) => (
-            <div key={index} className="mb-10 ml-6">
-              <span
-                className={`absolute -left-3 top-1 w-5 h-5 rounded-full ${statusColor[step.status]} border-4 border-gray-900`}
-              ></span>
-              <h3 className="text-lg font-semibold">{step.title}</h3>
-              <p className="text-sm text-gray-400">{step.date}</p>
-              <p className="text-xs text-gray-500 mt-1 capitalize">{step.status.replace('-', ' ')}</p>
-            </div>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.3 }}
+              className="flex flex-col items-center text-center min-w-[140px]"
+            >
+              <div
+                className={`flex items-center justify-center w-12 h-12 rounded-full border-4 mb-2 ${statusColor[step.status]}`}
+              >
+                {statusIcon[step.status]}
+              </div>
+              <h3 className="text-sm font-semibold text-black dark:text-white">{step.title}</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{step.date}</p>
+              <p className="text-xs mt-1 capitalize text-gray-400 dark:text-gray-500">{step.status.replace('-', ' ')}</p>
+              {index < steps.length - 1 && (
+                <div className="h-1 w-24 bg-gradient-to-r from-purple-500 to-purple-300 mt-3 rounded-full"></div>
+              )}
+            </motion.div>
           ))}
         </div>
       </div>

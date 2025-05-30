@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ModeToggle } from "@/components/ui/mode-toggle";
+// import { ModeToggle } from "@/components/ui/mode-toggle";
 
 export default function ProposalStatus() {
   const proposals = [
@@ -74,7 +74,7 @@ export default function ProposalStatus() {
     <div className="min-h-screen bg-white text-black dark:bg-gray-950 dark:text-white p-4">
       <div className="max-w-7xl mx-auto space-y-10">
         <div className="flex justify-end">
-          <ModeToggle />
+          {/* <ModeToggle /> */}
         </div>
 
         {/* Proposals Section */}
