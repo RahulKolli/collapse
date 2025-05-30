@@ -55,6 +55,17 @@ export default function TalentProfileSetup() {
         </div>
 
         <form className="space-y-4"> {/* Decreased space between form elements */}
+
+          {/* ✅ Profile Name Field */}
+          <div>
+            <label className="block mb-1 text-sm text-gray-700 dark:text-gray-300">Profile Name</label>
+            <input
+              type="text"
+              placeholder="Enter your full name"
+              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/10 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
+            />
+          </div>
+
           {/* Bio */}
           <div>
             <label className="block mb-1 text-sm text-gray-700 dark:text-gray-300">Bio</label>
