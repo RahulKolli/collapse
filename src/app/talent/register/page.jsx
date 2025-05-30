@@ -1,19 +1,20 @@
 'use client';
 
-import { ModeToggle } from "@/components/ui/mode-toggle";
+import { ModeToggle } from '@/components/ui/mode-toggle';
 
 export default function TalentRegister() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
-      <div className="relative bg-white border border-gray-200 dark:bg-white/10 dark:border-white/10 backdrop-blur-lg rounded-2xl p-8 w-full max-w-lg shadow-2xl space-y-6 transition-colors duration-300">
-        
-        {/* Mode toggle button */}
-        <div className="absolute top-4 right-4">
-          <ModeToggle />
-        </div>
+    <div className="min-h-screen flex items-center justify-center p-4 bg-white text-black dark:bg-gray-950 dark:text-white transition-colors duration-300 relative">
+      
+      {/* ✅ Theme Toggle Button */}
+      <div className="absolute top-4 right-4 z-10">
+        <ModeToggle />
+      </div>
 
-        <h1 className="text-3xl font-semibold text-center">Talent Registration</h1>
-        <p className="text-sm text-center text-gray-600 dark:text-gray-300">
+      {/* ✅ Card Container */}
+      <div className="bg-white/80 dark:bg-white/5 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-xl p-6 w-full max-w-xl shadow-2xl space-y-5 transition-colors duration-300">
+        <h1 className="text-2xl font-semibold text-center">Talent Registration</h1>
+        <p className="text-xs text-center text-gray-600 dark:text-gray-300">
           Join our platform and verify your identity
         </p>
 
@@ -24,7 +25,7 @@ export default function TalentRegister() {
             <input
               type="text"
               placeholder="John Doe"
-              className="w-full px-4 py-3 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/20 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/10 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
             />
           </div>
 
@@ -34,7 +35,7 @@ export default function TalentRegister() {
             <input
               type="email"
               placeholder="john@example.com"
-              className="w-full px-4 py-3 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/20 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/10 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
             />
           </div>
 
@@ -44,7 +45,7 @@ export default function TalentRegister() {
             <input
               type="tel"
               placeholder="+91 9876543210"
-              className="w-full px-4 py-3 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/20 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/10 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
             />
           </div>
 
@@ -54,15 +55,16 @@ export default function TalentRegister() {
             <input
               type="file"
               accept=".pdf,.jpg,.jpeg,.png"
-              className="w-full file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer"
+              className="w-full file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold 
+                         file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer"
             />
-            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Accepted: PDF, JPG, PNG</p>
+            <p className="text-xs mt-1 text-gray-500 dark:text-gray-400">Accepted: PDF, JPG, PNG</p>
           </div>
 
-          {/* Submit */}
+          {/* Submit Button */}
           <button
             type="button"
-            className="w-full bg-purple-600 hover:bg-purple-700 transition-all py-3 rounded-lg font-semibold text-white"
+            className="w-full bg-purple-600 hover:bg-purple-700 transition-all py-2 rounded-lg font-semibold text-white text-sm"
           >
             Submit Registration
           </button>
