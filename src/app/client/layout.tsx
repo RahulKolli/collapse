@@ -1,8 +1,7 @@
 "use client";
 
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarInset } from "@/components/ui/sidebar";
+import { AppSidebarclient } from "@/components/app-sidebar-client";
 import { SiteHeader } from "@/components/site-header";
 
 export default function DashboardLayout({ children }) {
@@ -14,13 +13,13 @@ export default function DashboardLayout({ children }) {
       }}
     >
       <div className="flex w-full min-h-screen overflow-x-hidden">
-        <AppSidebar variant="inset" />
-        <SidebarInset className={undefined}>
+        <AppSidebarclient />
+        <div className="flex flex-col flex-1">
           <SiteHeader />
           <main className="flex-1 overflow-y-auto p-4">
             {children}
           </main>
-        </SidebarInset>
+        </div>
       </div>
     </SidebarProvider>
   );

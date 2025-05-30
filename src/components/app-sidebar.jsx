@@ -35,8 +35,8 @@ import {
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "Admin",
+    email: "@Atomleap.ai",
     avatar: "/avatars/shadcn.jpg",
   },
   navMain: [
@@ -64,6 +64,11 @@ const data = {
       title: "Disputes",
       url: "/admin/disputes",
       icon: IconUsers,
+    },
+    {
+      title: "Notifications",
+      url: "/admin/notifications",
+      icon: IconReport,
     },
   ],
   navClouds: [
@@ -138,7 +143,7 @@ const data = {
       icon: IconDatabase,
     },
     {
-      name: "Reports",
+      name: "Notifications",
       url: "#",
       icon: IconReport,
     },
@@ -169,7 +174,7 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
+        
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
