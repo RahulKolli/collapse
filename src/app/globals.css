@@ -42,9 +42,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
-
 :root {
-<<<<<<< HEAD
   --background: oklch(0.9711 0.0074 80.7211);
   --foreground: oklch(0.3000 0.0358 30.2042);
   --card: oklch(0.9711 0.0074 80.7211);
@@ -136,7 +134,7 @@
   --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
   --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-=======
+
   --background: oklch(1.0000 0 0);
   --foreground: oklch(0.2686 0 0);
   --card: oklch(1.0000 0 0);
@@ -228,7 +226,7 @@
   --shadow-lg: 0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 4px 6px -2px hsl(0 0% 0% / 0.10);
   --shadow-xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 8px 10px -2px hsl(0 0% 0% / 0.10);
   --shadow-2xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.25);
->>>>>>> 9f720824ca732675c7d3b04a890752d853f4c535
+
 }
 
 @theme inline {
