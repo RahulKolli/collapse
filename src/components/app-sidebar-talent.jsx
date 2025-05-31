@@ -36,42 +36,77 @@ const data = {
     avatar: "/avatars/shadcn.jpg",
   },
   navMain: [
-    {
-      title: "Dashboard",
-      url: "",
-      icon: IconDashboard,
-    },
-    {
-      title: "Profile",
-      url: "/talent/profile",
-      icon: IconListDetails,
-    },
-    {
-      title: "Profile Availibility",
-      url: "/talent/preferences",
-      icon: IconChartBar,
-    },
-    {
-      title: "Proposal Status",
-      url: "/talent/proposals-status",
-      icon: IconFolder,
-    },
-    {
-      title: "Disputes",
-      url: "/talent/dispute",
-      icon: IconUsers,
-    },
-        {
-      title: "Reviews and Ratings",
-      url: "/talent/review",
-      icon: IconUsers,
-    },
-        {
-      title: "Gig Timeline",
-      url: "/talent/timeline",
-      icon: IconUsers,
-    },
-  ],
+  {
+    title: "Dashboard",
+    url: "",
+    icon: IconDashboard,
+  },
+  {
+    title: "KYC Upload",
+    url: "/talent/kyc-upload",
+    icon: IconUsers,
+  },
+  {
+    title: "Profile",
+    url: "/talent/profile",
+    icon: IconListDetails,
+  },
+  {
+    title: "Portfolio",
+    url: "/talent/portfolio",
+    icon: IconUsers,
+  },
+  {
+    title: "Profile Availibility",
+    url: "/talent/preferences",
+    icon: IconChartBar,
+  },
+  {
+    title: "Browse Projects",
+    url: "/talent/browse-projects",
+    icon: IconUsers,
+  },
+  {
+    title: "Project Details",
+    url: "/talent/project-details",
+    icon: IconUsers,
+  },
+  {
+    title: "Submit Proposal",
+    url: "/talent/submit-proposal",
+    icon: IconUsers,
+  },
+  {
+    title: "Proposal Status",
+    url: "/talent/proposals-status",
+    icon: IconFolder,
+  },
+  {
+    title: "Gig Timeline",
+    url: "/talent/timeline",
+    icon: IconUsers,
+  },
+  {
+    title: "Meeting Scheduling",
+    url: "/talent/schedule",
+    icon: IconUsers,
+  },
+  {
+    title: "Earnings",
+    url: "/talent/earnings",
+    icon: IconUsers,
+  },
+  {
+    title: "Disputes",
+    url: "/talent/dispute",
+    icon: IconUsers,
+  },
+  {
+    title: "Reviews and Ratings",
+    url: "/talent/reviews",
+    icon: IconUsers,
+  }
+],
   navSecondary: [
     {
       title: "Settings",

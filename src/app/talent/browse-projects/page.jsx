@@ -1,41 +1,36 @@
 'use client';
 
-import { ModeToggle } from '@/components/ui/mode-toggle'; // Import the ModeToggle component
-
 export default function BrowseProjects() {
   return (
-    // Main container: Now dark by default, gets light colors in "dark" mode
-    // (meaning when the 'dark' class is present on html, it shows the light theme)
-    <div className="min-h-screen bg-gray-100 to-gray-200 p-6 text-gray-900 dark:bg-gradient-to-br dark:from-gray-950 dark:to-gray-900 dark:text-white relative">
+    // Main container using shadcn background and foreground colors
+    // Light mode: bg-background (typically light), text-foreground (typically dark)
+    // Dark mode: dark:bg-background (typically dark), dark:text-foreground (typically light)
+    <div className="min-h-screen bg-background text-foreground p-6 relative">
       
       {/* ModeToggle positioned at the top-right corner of the page */}
       <div className="absolute top-4 right-4 z-10">
-        <ModeToggle />
       </div>
 
       <div className="max-w-6xl mx-auto space-y-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <h1 className="text-3xl font-semibold">Open Projects</h1>
+          <h1 className="text-3xl font-semibold text-foreground">Open Projects</h1> {/* Uses foreground for heading */}
 
           {/* Filters section */}
           <div className="flex flex-wrap gap-3">
-            {/* Input fields: Now light by default, gets dark colors in "dark" mode */}
+            {/* Input fields using shadcn input colors */}
             <input
               type="text"
               placeholder="Search by tag (e.g., fashion, tech)"
-              className="px-4 py-2 rounded-lg bg-gray-200 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-600
-                         dark:bg-white/10 dark:border-white/10 dark:placeholder-gray-400 dark:text-white"
+              className="px-4 py-2 rounded-lg bg-input border border-input placeholder-muted-foreground text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             />
             <input
               type="text"
               placeholder="Search by location"
-              className="px-4 py-2 rounded-lg bg-gray-200 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-600
-                         dark:bg-white/10 dark:border-white/10 dark:placeholder-gray-400 dark:text-white"
+              className="px-4 py-2 rounded-lg bg-input border border-input placeholder-muted-foreground text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             />
-            {/* Apply Filters button: Now has a dark background by default, gets lighter in "dark" mode */}
+            {/* Apply Filters button using shadcn primary colors */}
             <button
-              className="bg-purple-700 hover:bg-purple-800 px-4 py-2 rounded-lg text-sm font-semibold text-white
-                         dark:bg-purple-600 dark:hover:bg-purple-700 dark:text-white"
+              className="bg-primary hover:bg-primary/90 px-4 py-2 rounded-lg text-sm font-semibold text-primary-foreground transition-colors duration-200"
             >
               Apply Filters
             </button>
@@ -47,25 +42,24 @@ export default function BrowseProjects() {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              // Project card styling: Now light by default, gets dark in "dark" mode
-              className="bg-white/70 backdrop-blur-lg border border-gray-300 rounded-xl p-5 space-y-3 hover:shadow-xl transition-all text-gray-900
-                         dark:bg-white/5 dark:border-white/10 dark:text-white"
+              // Project card styling using shadcn card colors and border
+              // backdrop-blur-lg added for dark mode as a specific effect if desired
+              className="bg-card border border-border rounded-xl p-5 space-y-3 hover:shadow-xl transition-all text-card-foreground dark:backdrop-blur-lg"
             >
-              <h2 className="text-xl font-semibold">Brand Collaboration #{i + 1}</h2>
-              {/* Description text: Adjusts text color */}
-              <p className="text-sm text-gray-700 dark:text-gray-300">
+              <h2 className="text-xl font-semibold text-foreground">Brand Collaboration #{i + 1}</h2>
+              {/* Description text using shadcn muted-foreground */}
+              <p className="text-sm text-muted-foreground">
                 Looking for lifestyle creators to promote our eco-friendly fashion line.
               </p>
-              <div className="flex flex-wrap gap-2 text-xs text-gray-400">
-                {/* Tag styling: Adjusts background and text colors */}
-                <span className="bg-gray-300 px-2 py-1 rounded text-gray-800 dark:bg-white/10 dark:text-gray-400">#fashion</span>
-                <span className="bg-gray-300 px-2 py-1 rounded text-gray-800 dark:bg-white/10 dark:text-gray-400">#eco</span>
-                <span className="bg-gray-300 px-2 py-1 rounded text-gray-800 dark:bg-white/10 dark:text-gray-400">Delhi</span>
+              <div className="flex flex-wrap gap-2 text-xs">
+                {/* Tag styling using shadcn muted colors */}
+                <span className="bg-muted px-2 py-1 rounded text-muted-foreground">#fashion</span>
+                <span className="bg-muted px-2 py-1 rounded text-muted-foreground">#eco</span>
+                <span className="bg-muted px-2 py-1 rounded text-muted-foreground">Delhi</span>
               </div>
-              {/* View Details button (link-style): Adjusts text and hover colors */}
+              {/* View Details button (link-style) using shadcn primary color */}
               <button
-                className="mt-2 text-purple-600 hover:text-purple-800 text-sm font-medium
-                           dark:text-purple-400 dark:hover:text-purple-200"
+                className="mt-2 text-primary hover:text-primary/90 text-sm font-medium transition-colors duration-200"
               >
                 View Details →
               </button>
