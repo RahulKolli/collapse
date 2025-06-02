@@ -1,27 +1,25 @@
 'use client';
 
 import { useState } from 'react';
-import { ModeToggle } from '@/components/ui/mode-toggle';
-
 export default function MeetingScheduling() {
   const [meetingType, setMeetingType] = useState('call');
 
   return (
-    // Main container: Now light by default, displays darker colors in "dark" mode.
-    <div className="relative min-h-screen bg-gradient-to-br from-gray-200 to-gray-100 p-6 text-gray-900 dark:from-gray-950 dark:to-gray-900 dark:text-white flex items-center justify-center">
+    // Main container: Using shadcn's background and foreground colors.
+    // The subtle gradient is approximated using default background or a slight variation.
+    <div className="relative min-h-screen bg-background text-foreground flex items-center justify-center p-6">
       {/* ModeToggle in top-right corner */}
       <div className="absolute top-4 right-4 z-10">
-        <ModeToggle />
       </div>
 
-      {/* Card container: Now light by default, displays darker colors in "dark" mode. */}
-      <div className="max-w-md w-full bg-white/70 dark:bg-white/5 backdrop-blur-lg border border-gray-300 dark:border-white/10 rounded-2xl p-8 space-y-6 shadow-lg text-gray-900 dark:text-white">
-        <h1 className="text-3xl font-semibold text-center text-gray-900 dark:text-white">Schedule a Meeting</h1>
+      {/* Card container: Using shadcn's card background, text, and border colors. */}
+      <div className="max-w-md w-full bg-card backdrop-blur-lg border border-border rounded-2xl p-8 space-y-6 shadow-lg text-card-foreground">
+        <h1 className="text-3xl font-semibold text-center text-foreground">Schedule a Meeting</h1>
 
         <form className="space-y-5">
-          {/* Meeting Type Label: Light by default, slightly darker in "dark" mode */}
+          {/* Meeting Type Label: Using muted-foreground for labels */}
           <div>
-            <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Meeting Type</label>
+            <label className="block text-muted-foreground mb-2 font-medium">Meeting Type</label>
             <div className="flex gap-6">
               <label className="inline-flex items-center cursor-pointer">
                 <input
@@ -30,9 +28,10 @@ export default function MeetingScheduling() {
                   value="call"
                   checked={meetingType === 'call'}
                   onChange={() => setMeetingType('call')}
-                  className="form-radio text-purple-600 dark:text-purple-500"
+                  // Using shadcn's primary color for radio button accent
+                  className="form-radio text-primary focus:ring-primary"
                 />
-                <span className="ml-2">Call</span>
+                <span className="ml-2 text-foreground">Call</span>
               </label>
               <label className="inline-flex items-center cursor-pointer">
                 <input
@@ -41,55 +40,52 @@ export default function MeetingScheduling() {
                   value="in-person"
                   checked={meetingType === 'in-person'}
                   onChange={() => setMeetingType('in-person')}
-                  className="form-radio text-purple-600 dark:text-purple-500"
+                  // Using shadcn's primary color for radio button accent
+                  className="form-radio text-primary focus:ring-primary"
                 />
-                <span className="ml-2">In-Person</span>
+                <span className="ml-2 text-foreground">In-Person</span>
               </label>
             </div>
           </div>
 
-          {/* Date Input: Light by default, displays darker colors in "dark" mode. */}
+          {/* Date Input: Using shadcn's input background, border, text, and primary focus ring. */}
           <div>
-            <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Select Date</label>
+            <label className="block text-muted-foreground mb-2 font-medium">Select Date</label>
             <input
               type="date"
-              className="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 text-gray-900
-                         dark:bg-white/10 dark:text-white dark:border-white/10
-                         focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full p-3 rounded-lg bg-input border border-input text-foreground
+                         focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
             />
           </div>
 
-          {/* Time Input: Light by default, displays darker colors in "dark" mode. */}
+          {/* Time Input: Using shadcn's input background, border, text, and primary focus ring. */}
           <div>
-            <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Select Time</label>
+            <label className="block text-muted-foreground mb-2 font-medium">Select Time</label>
             <input
               type="time"
-              className="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 text-gray-900
-                         dark:bg-white/10 dark:text-white dark:border-white/10
-                         focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full p-3 rounded-lg bg-input border border-input text-foreground
+                         focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
             />
           </div>
 
-          {/* Location Input (conditional): Light by default, displays darker colors in "dark" mode. */}
+          {/* Location Input (conditional): Using shadcn's input background, border, text, placeholder, and primary focus ring. */}
           {meetingType === 'in-person' && (
             <div>
-              <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Meeting Location</label>
+              <label className="block text-muted-foreground mb-2 font-medium">Meeting Location</label>
               <input
                 type="text"
                 placeholder="Enter location address"
-                className="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900
-                           dark:bg-white/10 dark:text-white dark:border-white/10 dark:placeholder-gray-400
-                           focus:outline-none focus:ring-2 focus:ring-purple-600"
+                className="w-full p-3 rounded-lg bg-input border border-input placeholder-muted-foreground text-foreground
+                           focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
               />
             </div>
           )}
 
-          {/* Submit Button: Dark purple by default, slightly lighter in "dark" mode. */}
+          {/* Submit Button: Using shadcn's primary button colors. */}
           <button
             type="button"
             onClick={() => alert('Meeting scheduled!')}
-            className="w-full bg-purple-700 hover:bg-purple-800 py-3 rounded-lg font-semibold text-white
-                       dark:bg-purple-600 dark:hover:bg-purple-700 dark:text-white transition-all"
+            className="w-full bg-primary hover:bg-primary/90 py-3 rounded-lg font-semibold text-primary-foreground transition-colors"
           >
             Schedule Meeting
           </button>

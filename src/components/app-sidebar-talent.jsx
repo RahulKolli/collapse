@@ -91,6 +91,11 @@ const data = {
     url: "/talent/schedule",
     icon: IconUsers,
   },
+    {
+    title: "Project Overview",
+    url: "/talent/project-overview",
+    icon: IconUsers,
+  },
   {
     title: "Earnings",
     url: "/talent/earnings",
