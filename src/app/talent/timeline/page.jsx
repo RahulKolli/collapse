@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
-import { ModeToggle } from '@/components/ui/mode-toggle';
+// import { ModeToggle } from '@/components/ui/mode-toggle'; // Uncommented the import
 import { motion } from 'framer-motion';
 import { CheckCircle, Clock, Loader } from 'lucide-react';
 
@@ -19,10 +19,11 @@ export default function GigTimeline() {
     { title: 'Payment Released', date: 'June 10', status: 'upcoming' },
   ];
 
+  // Using shadcn/ui colors for status indicators
   const statusColor = {
-    done: 'text-green-500 border-green-500',
-    'in-progress': 'text-yellow-500 border-yellow-500',
-    upcoming: 'text-gray-400 border-gray-400',
+    done: 'text-primary border-primary', // Primary color for completed steps
+    'in-progress': 'text-accent-foreground border-accent', // Accent color for in-progress
+    upcoming: 'text-muted-foreground border-border', // Muted foreground for upcoming, border for outline
   };
 
   const statusIcon = {
@@ -32,15 +33,18 @@ export default function GigTimeline() {
   };
 
   return (
-    <div className="min-h-screen p-6 bg-white text-black transition-colors duration-300 relative dark:bg-gradient-to-br dark:from-gray-950 dark:to-gray-900 dark:text-white">
+    // Main container using shadcn background and foreground colors
+    // Light mode: bg-background (white), text-foreground (dark text)
+    // Dark mode: dark:bg-background (dark gray/blue), dark:text-foreground (light text)
+    <div className="min-h-screen p-6 bg-background text-foreground transition-colors duration-300 relative">
       <div className="absolute top-4 right-4 z-10">
-        <ModeToggle />
+        {/* <ModeToggle />  */}
       </div>
 
       <div className="max-w-6xl mx-auto space-y-10">
-        <h1 className="text-3xl font-semibold text-center text-black dark:text-white">Gig Timeline</h1>
-        <p className="text-center text-sm text-gray-600 dark:text-gray-400">
-          Tracking progress for gig ID: <span className="text-black dark:text-white">{id}</span>
+        <h1 className="text-3xl font-semibold text-foreground text-center">Gig Timeline</h1>
+        <p className="text-center text-sm text-muted-foreground">
+          Tracking progress for gig ID: <span className="text-foreground">{id}</span>
         </p>
 
         <div className="flex items-center overflow-x-auto space-x-10 px-4">
@@ -57,11 +61,12 @@ export default function GigTimeline() {
               >
                 {statusIcon[step.status]}
               </div>
-              <h3 className="text-sm font-semibold text-black dark:text-white">{step.title}</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400">{step.date}</p>
-              <p className="text-xs mt-1 capitalize text-gray-400 dark:text-gray-500">{step.status.replace('-', ' ')}</p>
+              <h3 className="text-sm font-semibold text-foreground">{step.title}</h3>
+              <p className="text-xs text-muted-foreground">{step.date}</p>
+              <p className="text-xs mt-1 capitalize text-muted-foreground">{step.status.replace('-', ' ')}</p>
               {index < steps.length - 1 && (
-                <div className="h-1 w-24 bg-gradient-to-r from-purple-500 to-purple-300 mt-3 rounded-full"></div>
+                // Using shadcn border color for the timeline connector
+                <div className="h-1 w-24 bg-border mt-3 rounded-full"></div>
               )}
             </motion.div>
           ))}

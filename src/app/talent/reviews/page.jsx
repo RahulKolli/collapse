@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import { ModeToggle } from '@/components/ui/mode-toggle';
+// import { ModeToggle } from '@/components/ui/mode-toggle';
 
 export default function RatingsReviewHistory() {
   const reviews = [
@@ -41,8 +41,8 @@ export default function RatingsReviewHistory() {
         <svg
           key={i}
           className={`w-5 h-5 transition-all duration-200 ${
-            // Stars: Always yellow for filled. Empty stars are gray-400 (default/dark visual), gray-500 (dark mode/light visual).
-            i < count ? 'text-yellow-400' : 'text-gray-400 dark:text-gray-500'
+            // Stars: Using primary for filled, muted-foreground for empty.
+            i < count ? 'text-primary' : 'text-muted-foreground'
           }`}
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -53,58 +53,56 @@ export default function RatingsReviewHistory() {
   };
 
   return (
-    // Main container:
-    // By default (no 'dark' class on HTML), it's the DARKER visual theme.
-    // When 'dark' class IS present on HTML, it's the LIGHTER visual theme.
-    <div className="min-h-screen bg-gray-900 text-white p-6 relative
-                    dark:bg-white dark:text-black">
+    // Main container using shadcn background and foreground colors
+    // Light mode: bg-background (white), text-foreground (dark text)
+    // Dark mode: dark:bg-background (dark gray/blue), dark:text-foreground (light text)
+    <div className="min-h-screen bg-background text-foreground p-6 relative transition-colors duration-300">
       
       {/* ModeToggle positioned at the top-right corner */}
       <div className="absolute top-4 right-4 z-10">
-        <ModeToggle />
+        {/* <ModeToggle /> */}
       </div>
 
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-semibold">Ratings & Review History</h1>
+          <h1 className="text-3xl font-semibold text-foreground">Ratings & Review History</h1>
         </div>
         {reviews.length === 0 ? (
-          // Text for no reviews: Color matches the current visual theme's secondary text.
-          <p className="text-center text-gray-400 dark:text-gray-500">No reviews yet.</p>
+          // Text for no reviews: Using muted-foreground for secondary text.
+          <p className="text-center text-muted-foreground">No reviews yet.</p>
         ) : (
           <ul className="space-y-6">
             {reviews.map(({ id, brand, rating, comment, date, user, avatar }) => (
               <li
                 key={id}
                 // Review card:
-                // Default (darker visual theme): Dark background with subtle border, shadow.
-                // Dark mode active (lighter visual theme): Light background with subtle border, shadow.
-                // Hover effect: Shadow increases, correctly reversed.
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-md transition-all
-                           hover:shadow-lg /* Hover for default (DARKER visual) theme */
-                           dark:bg-gray-100 dark:border-gray-300 dark:shadow-md dark:hover:shadow-xl /* Hover for dark mode active (LIGHTER visual) theme */"
+                // Light mode: bg-card (white), border-border (light gray)
+                // Dark mode: dark:bg-card (dark background, might be transparent depending on config), dark:border-border
+                // Backdrop blur kept for dark mode as per previous request, but note that shadcn's card is typically opaque.
+                className="bg-card border border-border rounded-xl p-6 shadow-md transition-all
+                           hover:shadow-lg dark:hover:shadow-xl dark:backdrop-blur-md"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-4">
                     <img
                       src={avatar}
                       alt={user}
-                      // Avatar border: Remains consistent purple.
-                      className="w-12 h-12 rounded-full border-2 border-purple-600 shadow"
+                      // Avatar border: Using primary color for consistency with shadcn accents.
+                      className="w-12 h-12 rounded-full border-2 border-primary shadow"
                     />
                     <div>
-                      {/* Brand name: White in darker visual theme, black in lighter visual theme. */}
-                      <h2 className="text-lg font-semibold text-white dark:text-black">{brand}</h2>
-                      {/* User name: Gray in darker visual theme, darker gray in lighter visual theme. */}
-                      <p className="text-sm text-gray-400 dark:text-gray-600">{user}</p>
+                      {/* Brand name: Using foreground for main text */}
+                      <h2 className="text-lg font-semibold text-foreground">{brand}</h2>
+                      {/* User name: Using muted-foreground for secondary text */}
+                      <p className="text-sm text-muted-foreground">{user}</p>
                     </div>
                   </div>
                   <div className="flex">{renderStars(rating)}</div>
                 </div>
-                {/* Comment text: Light gray in darker visual theme, darker gray in lighter visual theme. */}
-                <p className="text-gray-300 dark:text-gray-700 mb-2">{comment}</p>
-                {/* Date text: Consistent gray in both visual themes. */}
-                <p className="text-xs text-gray-500 italic dark:text-gray-500">{date}</p>
+                {/* Comment text: Using muted-foreground for review content */}
+                <p className="text-muted-foreground mb-2">{comment}</p>
+                {/* Date text: Using muted-foreground for consistent secondary text */}
+                <p className="text-xs text-muted-foreground italic">{date}</p>
               </li>
             ))}
           </ul>
