@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { ModeToggle } from '@/components/ui/mode-toggle';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -103,7 +102,6 @@ export default function CampaignAnalyticsDashboard() {
             <Button variant="outline" className="flex items-center gap-2 text-sm sm:text-base">
               <Plus className="w-4 h-4" /> New Project
             </Button>
-            <ModeToggle />
           </div>
         </header>
 
@@ -188,7 +186,8 @@ export default function CampaignAnalyticsDashboard() {
               </Button>
             </div>
           </div>
-          <div className="h-[250px] sm:h-[350px]">
+          {/* Explicit visibility styling for the chart container */}
+          <div className="h-[250px] sm:h-[350px]" style={{ visibility: 'visible', opacity: 1 }}>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
                 data={chartData}
