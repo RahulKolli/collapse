@@ -66,11 +66,6 @@ const data = {
     url: "/talent/browse-projects",
     icon: IconUsers,
   },
-    {
-    title: "Project-Details",
-    url: "/talent/project-details",
-    icon: IconUsers,
-  },
 
   {
     title: "Submit Proposal",
