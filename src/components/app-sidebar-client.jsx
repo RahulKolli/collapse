@@ -52,13 +52,53 @@ const data = {
       icon: IconChartBar,
     },
     {
-      title: "Talents",
+      title: "Talent discovery",
       url: "/client/talent-discovery",
       icon: IconFolder,
     },
     {
       title: "Disputes",
       url: "/client/dispute",
+      icon: IconUsers,
+    },
+    {
+      title: "register",
+      url: "/client/register",
+      icon: IconUsers,
+    },
+    {
+      title: "posted projects",
+      url: "/client/posted-projects",
+      icon: IconUsers,
+    },
+    {
+      title: "post review",
+      url: "/client/post-review",
+      icon: IconUsers,
+    },
+      {
+      title: "project detail view",
+      url: "/client/project-detail-view",
+      icon: IconUsers,
+    },
+      {
+      title: "proposal review",
+      url: "/client/proposal-review",
+      icon: IconUsers,
+    },
+      {
+      title: "proposals recieved",
+      url: "/client/proposals-recieved",
+      icon: IconUsers,
+    },
+    {
+      title: "posting project",
+      url: "/client/posting-project",
+      icon: IconUsers,
+    },
+    {
+      title: "talent profile",
+      url: "/client/talent-profile",
       icon: IconUsers,
     },
   ],
