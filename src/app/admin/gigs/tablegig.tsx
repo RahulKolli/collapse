@@ -99,17 +99,18 @@ export function Componentgig() {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className="fill-[--color-foreground] text-3xl font-bold"
+                          className="fill-foreground text-3xl font-bold"
                         >
                           {totalGigs.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
-                          className="fill-[--color-muted-foreground]"
+                          className="fill-muted-foreground text-sm"
                         >
                           Total Gigs
                         </tspan>
+
                       </text>
                     )
                   }
