@@ -163,8 +163,8 @@ export function AppSidebar({
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
-              <a href="/">
+            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5 ">
+              <a href="/" >
                 <IconInnerShadowTop className="!size-5" />
                 <span className="text-base font-semibold">Collapse</span>
               </a>
