@@ -63,17 +63,7 @@ export function ModeToggle() {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
-  return (
-    <button
-      onClick={toggleTheme}
-      className="p-2 rounded-md bg-gray-200 text-gray-800
-                 dark:bg-gray-700 dark:text-gray-200
-                 hover:bg-gray-300 dark:hover:bg-gray-600
-                 transition-colors duration-200 ease-in-out"
-    >
-      {theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-    </button>
-  );
+ 
 }
 
 // --- ProposalReview Component ---

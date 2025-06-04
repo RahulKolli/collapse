@@ -1,75 +1,138 @@
-
 'use client';
 
-import { ModeToggle } from '@/components/ui/mode-toggle';
+import { useState, useRef } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Paperclip } from 'lucide-react';
 
 export default function TalentRegister() {
+  const [kycFileName, setKycFileName] = useState('');
+  const kycInputRef = useRef(null);
+
+  // Handler for KYC file input change
+  const handleKycFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setKycFileName(file.name);
+    } else {
+      setKycFileName('');
+    }
+  };
+
+  // Handler to trigger the hidden KYC file input click
+  const handleKycUploadClick = () => {
+    kycInputRef.current?.click();
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-white text-black dark:bg-gray-950 dark:text-white transition-colors duration-300 relative">
-      
-      {/* ✅ Theme Toggle Button */}
-      <div className="absolute top-4 right-4 z-10">
-        
-      </div>
+    <div className="min-h-screen flex items-center justify-center p-4
+                    bg-background text-foreground
+                    relative">
 
-      {/* ✅ Card Container */}
-      <div className="bg-white/80 dark:bg-white/5 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-xl p-6 w-full max-w-xl shadow-2xl space-y-5 transition-colors duration-300">
-        <h1 className="text-2xl font-semibold text-center">Client Registration</h1>
-        <p className="text-xs text-center text-gray-600 dark:text-gray-300">
-          Join our platform and verify your identity
-        </p>
+      {/* Card Container - Shadow removed */}
+      <Card className="w-full max-w-md mx-auto p-6 md:p-8
+                       bg-card rounded-xl {/* Shadow removed here */}
+                       transition-colors duration-300 border border-border">
+        <CardHeader className="text-center pb-6">
+          <CardTitle className="text-3xl md:text-4xl font-extrabold text-primary tracking-tight">
+            Join Our Client Network
+          </CardTitle>
+          <CardDescription className="text-base text-muted-foreground mt-2 max-w-sm mx-auto">
+            Create your profile and take the first step towards new opportunities.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <form className="space-y-6">
+            {/* Full Name */}
+            <div>
+              <Label htmlFor="fullName" className="block text-sm font-medium mb-2 text-foreground">Full Name</Label>
+              <Input
+                id="fullName"
+                type="text"
+                placeholder="Enter your full name"
+                className="w-full h-11 px-4 rounded-lg border border-input
+                           focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+                           focus-visible:ring-offset-background"
+              />
+            </div>
 
-        <form className="space-y-4">
-          {/* Full Name */}
-          <div>
-            <label className="block mb-1 text-sm text-gray-700 dark:text-gray-300">Full Name</label>
-            <input
-              type="text"
-              placeholder="John Doe"
-              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/10 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
-            />
-          </div>
+            {/* Email */}
+            <div>
+              <Label htmlFor="email" className="block text-sm font-medium mb-2 text-foreground">Email Address</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="your@example.com"
+                className="w-full h-11 px-4 rounded-lg border border-input
+                           focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+                           focus-visible:ring-offset-background"
+              />
+            </div>
 
-          {/* Email */}
-          <div>
-            <label className="block mb-1 text-sm text-gray-700 dark:text-gray-300">Email Address</label>
-            <input
-              type="email"
-              placeholder="john@example.com"
-              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/10 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
-            />
-          </div>
+            {/* Phone */}
+            <div>
+              <Label htmlFor="phone" className="block text-sm font-medium mb-2 text-foreground">Phone Number</Label>
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="+91 9876543210"
+                className="w-full h-11 px-4 rounded-lg border border-input
+                           focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+                           focus-visible:ring-offset-background"
+              />
+            </div>
 
-          {/* Phone */}
-          <div>
-            <label className="block mb-1 text-sm text-gray-700 dark:text-gray-300">Phone Number</label>
-            <input
-              type="tel"
-              placeholder="+91 9876543210"
-              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-white/10 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
-            />
-          </div>
+            {/* KYC Upload */}
+            <div>
+              <Label htmlFor="kycDocument" className="block text-sm font-medium mb-2 text-foreground">KYC Document Upload</Label>
+              <div className="flex items-center space-x-3">
+                {/* Hidden native file input */}
+                <input
+                  id="kycDocument"
+                  type="file"
+                  ref={kycInputRef}
+                  onChange={handleKycFileChange}
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  className="hidden" // Hide the actual file input
+                />
+                {/* Custom button to trigger file input */}
+                <Button
+                  type="button"
+                  onClick={handleKycUploadClick}
+                  variant="outline"
+                  className="flex-shrink-0 flex items-center justify-center h-10 px-4 rounded-md
+                             border border-input text-foreground hover:bg-accent hover:text-accent-foreground"
+                >
+                  <Paperclip className="h-4 w-4 mr-2" /> Choose File
+                </Button>
+                {/* Display selected file name */}
+                {kycFileName ? (
+                  <span className="text-sm text-muted-foreground truncate flex-grow">
+                    {kycFileName}
+                  </span>
+                ) : (
+                  <span className="text-sm text-muted-foreground flex-grow">No file selected</span>
+                )}
+              </div>
+              <p className="text-xs mt-2 text-muted-foreground">Accepted: PDF, JPG, PNG (Max 5MB)</p>
+            </div>
 
-          {/* KYC Upload */}
-          <div>
-            <label className="block mb-1 text-sm text-gray-700 dark:text-gray-300">KYC Document Upload</label>
-            <input
-              type="file"
-              accept=".pdf,.jpg,.jpeg,.png"
-              className="w-full file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold 
-                         file:bg-primary/90 file:text-white hover:file:bg-primary/90 cursor-pointer"
-            />
-            <p className="text-xs mt-1 text-gray-500 dark:text-gray-400">Accepted: PDF, JPG, PNG</p>
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="button"
-className="bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2 rounded-lg transition"          >
-            Submit Registration
-          </button>
-        </form>
-      </div>
+            {/* Submit Button - Shadow removed */}
+            <Button
+              type="submit"
+              className="w-full py-2.5 text-lg font-semibold rounded-lg
+                         bg-primary text-primary-foreground
+                         hover:bg-primary/90 transition-colors duration-300 ease-in-out
+                         focus-visible:ring-2 focus-visible:ring-ring
+                         focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Register Now
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }
