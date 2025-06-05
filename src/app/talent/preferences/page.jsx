@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-// import { ModeToggle } from '@/components/ui/mode-toggle'; // Import ModeToggle
+// import { ModeToggle } from '@/components/ui/mode-toggle'; // Import ModeToggle - keeping this commented as it's not provided
 
 // AvailabilityFormModal Component (Same as before, no changes needed here)
 const AvailabilityFormModal = ({ isOpen, onClose, onSave, onDelete, initialData, selectedDate }) => {
@@ -389,7 +389,7 @@ export default function WorkPreferences() {
             </div>
 
             <div className="rounded-2xl p-6 sm:p-8 w-full max-w-4xl shadow-2xl space-y-6 relative transition-colors duration-300 bg-card border border-border text-card-foreground dark:backdrop-blur-lg">
-                <h1 className="text-3xl sm:text-4xl font-semibold text-foreground mb-4">Availability & Preferences</h1>
+                <h1 className="text-3xl font-bold mb-6">Availability & Preferences</h1>
                 <p className="text-sm sm:text-base text-muted-foreground mb-6">Let us know when you're free and what work you prefer</p>
 
                 {/* --- Tab Navigation --- */}
@@ -433,8 +433,8 @@ export default function WorkPreferences() {
                                             type="button"
                                             onClick={() => handleDayToggle(day)}
                                             className={`py-2 rounded-lg border text-sm font-medium transition-all duration-200 ${availableDays.includes(day)
-                                                    ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg border-primary'
-                                                    : 'bg-background hover:bg-accent text-foreground border-border'
+                                                        ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg border-primary'
+                                                        : 'bg-background hover:bg-accent text-foreground border-border'
                                                 }`}
                                         >
                                             {day}
@@ -478,8 +478,8 @@ export default function WorkPreferences() {
                                         <label
                                             key={type}
                                             className={`px-5 py-2 border rounded-lg cursor-pointer transition-all duration-200 ${workTypePreference === type
-                                                    ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg border-primary'
-                                                    : 'bg-muted hover:bg-accent text-foreground border-border'
+                                                        ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg border-primary'
+                                                        : 'bg-muted hover:bg-accent text-foreground border-border'
                                                 }`}
                                         >
                                             <input
@@ -556,29 +556,30 @@ export default function WorkPreferences() {
                                             className="rounded-lg p-4 shadow-sm flex flex-col justify-between bg-background border border-border"
                                         >
                                             <div>
-                                                {pref.type === 'unavailable' ? (
-                                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-destructive/10 text-destructive border border-destructive/20">
-                                                        Unavailable
-                                                    </span>
+                                                <div className={`text-lg font-bold mb-2 ${pref.type === 'unavailable' ? 'text-destructive' : 'text-primary'}`}>
+                                                    {pref.type === 'unavailable' ? 'Unavailable' : 'Preferred'}
+                                                </div>
+                                                {pref.allDay ? (
+                                                    <p className="text-sm text-muted-foreground mb-1">All Day</p>
                                                 ) : (
-                                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20">
-                                                        Preferred
-                                                    </span>
-                                                )}
-                                                <p className="text-lg font-bold mt-2 text-foreground">
-                                                    {pref.allDay ? 'All Day' : `${pref.startTime} - ${pref.endTime}`}
-                                                </p>
-                                                {pref.repeating && (
-                                                    <p className="text-sm mt-1 text-muted-foreground">
-                                                        Repeats {pref.repeatFrequency === 'day' ? 'Daily' : pref.repeatFrequency === 'week' ? `Weekly on ${pref.repeatDays.join(', ')}` : `Bi-weekly on ${pref.repeatDays.join(', ')}`}
-                                                        {pref.endsOn && ` until ${pref.endsOn}`}
+                                                    <p className="text-sm text-muted-foreground mb-1">
+                                                        {pref.startTime} - {pref.endTime}
                                                     </p>
                                                 )}
-                                                {pref.note && <p className="text-sm mt-2 italic text-muted-foreground">Note: {pref.note}</p>}
+                                                {pref.repeating && (
+                                                    <p className="text-xs text-muted-foreground mb-1">
+                                                        Repeats: {pref.repeatFrequency === 'day' ? 'Every Day' : `Every ${pref.repeatFrequency === 'week' ? 'Week' : '2 Weeks'}`}
+                                                        {pref.repeatFrequency !== 'day' && pref.repeatDays.length > 0 && ` on ${pref.repeatDays.map(d => d.substring(0, 3)).join(', ')}`}
+                                                        {pref.endsOn && ` until ${new Date(pref.endsOn).toDateString()}`}
+                                                    </p>
+                                                )}
+                                                {pref.note && (
+                                                    <p className="text-sm italic text-muted-foreground">"{pref.note}"</p>
+                                                )}
                                             </div>
                                             <button
                                                 onClick={() => handleEditPreference(pref)}
-                                                className="mt-4 self-end px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-opacity-50 transition ease-in-out duration-150 shadow-md"
+                                                className="mt-4 px-4 py-2 bg-secondary text-secondary-foreground rounded-md text-sm font-medium hover:bg-secondary/80 self-end transition-colors duration-200"
                                             >
                                                 Edit
                                             </button>
@@ -586,36 +587,43 @@ export default function WorkPreferences() {
                                     ))}
                                 </div>
                             )}
-                            <div className="flex flex-col sm:flex-row gap-4">
+
+                            {/* Add New Detailed Preference Button */}
+                            <div className="flex justify-center mt-6">
                                 <button
                                     onClick={handleAddPreference}
-                                    className="flex-1 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg shadow-md hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-opacity-50 transition ease-in-out duration-150"
+                                    className="px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg shadow-lg hover:bg-primary/90 transition-all duration-200 flex items-center gap-2"
                                 >
-                                    + Add New Detailed Preference
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
+                                    </svg>
+                                    Add New Availability
                                 </button>
+                            </div>
+
+                            {/* Reset All Future Preferences Button */}
+                            <div className="text-center mt-8">
                                 <button
                                     onClick={handleResetAllFuture}
-                                    className="flex-1 px-6 py-3 bg-destructive text-destructive-foreground font-semibold rounded-lg shadow-md hover:bg-destructive/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-opacity-50 transition ease-in-out duration-150"
+                                    className="text-sm text-destructive hover:underline"
                                 >
-                                    Reset All Future Detailed Preferences
+                                    Reset all future detailed availability
                                 </button>
                             </div>
                         </div>
                     </div>
                 )}
-
-                {/* --- Availability Form Modal --- */}
-                {isModalOpen && (
-                    <AvailabilityFormModal
-                        isOpen={isModalOpen}
-                        onClose={() => setIsModalOpen(false)}
-                        onSave={handleSavePreference}
-                        onDelete={handleDeletePreference}
-                        initialData={editingPreference}
-                        selectedDate={selectedDate}
-                    />
-                )}
             </div>
+
+            {/* Availability Form Modal */}
+            <AvailabilityFormModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onSave={handleSavePreference}
+                onDelete={handleDeletePreference}
+                initialData={editingPreference}
+                selectedDate={selectedDate}
+            />
         </div>
     );
 }

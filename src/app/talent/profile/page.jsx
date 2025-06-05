@@ -30,7 +30,7 @@ export default function TalentProfileSetup() {
       {/* Card container using shadcn card colors and border */}
       {/* Backdrop blur kept for dark mode, assuming desired effect. shadcn's card is typically opaque. */}
       <div className="bg-card border border-border rounded-xl p-6 w-full max-w-xl shadow-2xl space-y-5 transition-colors duration-300 dark:backdrop-blur-lg">
-        <h1 className="text-2xl font-semibold text-center text-foreground">Profile Setup</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">Profile Setup</h1>
         <p className="text-xs text-center text-muted-foreground">Tell us more about yourself</p>
 
         {/* Profile Picture Upload */}
