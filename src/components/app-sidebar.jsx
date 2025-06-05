@@ -37,7 +37,7 @@ const data = {
   user: {
     name: "Admin",
     email: "@Atomleap.ai",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "",
   },
   navMain: [
     {
@@ -166,7 +166,7 @@ export function AppSidebar({
             <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5 ">
               <a href="/" >
                 <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Collapse</span>
+                <span className="text-base font-semibold">Admin</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
