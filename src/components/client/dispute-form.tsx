@@ -54,7 +54,7 @@ const formSchema = z.object({
   name_0249317447: z.string()
 });
 
-export default function disputeform() {
+export function disputeform() {
 
   const [files, setFiles] = useState < File[] | null > (null);
 
