@@ -1,4 +1,6 @@
 // next.config.mjs
+// Removed @next/bundle-analyzer integration
+
 const nextConfig = {
   images: {
     remotePatterns: [

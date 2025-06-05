@@ -28,15 +28,11 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from "@/components/ui/select"
+  Input
+} from "@/components/ui/input"
 import {
-  Textarea
-} from "@/components/ui/textarea"
+  PasswordInput
+} from "@/components/password-input"
 import {
   CloudUpload,
   Paperclip
@@ -49,12 +45,13 @@ import {
 } from "@/components/file-upload"
 
 const formSchema = z.object({
-  reason: z.string(),
-  name_0994130846: z.string(),
-  name_0249317447: z.string()
+  name: z.string().min(1),
+  email: z.string(),
+  password: z.string(),
+  file: z.string()
 });
 
-export default function disputeform() {
+export default function MyForm123() {
 
   const [files, setFiles] = useState < File[] | null > (null);
 
@@ -88,53 +85,64 @@ export default function disputeform() {
         
         <FormField
           control={form.control}
-          name="reason"
+          name="name"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Raise dispute</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a reason" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
-                </SelectContent>
-              </Select>
+            <FormItem className="">
+              <FormLabel className="">Full Name</FormLabel>
+              <FormControl>
+                <Input 
+                placeholder="Enter name"
                 
-              <FormMessage />
+                type="text"
+                {...field} />
+              </FormControl>
+              <FormDescription className="">This is your public display name.</FormDescription>
+              <FormMessage className="" />
             </FormItem>
           )}
         />
         
         <FormField
           control={form.control}
-          name="name_0994130846"
+          name="email"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Description</FormLabel>
+            <FormItem className="">
+              <FormLabel className="">Email</FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder="Explain in detail"
-                  className="resize-none"
-                  {...field}
-                />
+                <Input 
+                placeholder="Enter your email"
+                
+                type="email"
+                {...field} />
               </FormControl>
-              
-              <FormMessage />
+              <FormDescription className="">Enter your email</FormDescription>
+              <FormMessage className="" />
             </FormItem>
           )}
         />
         
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem className="">
+              <FormLabel className="">Password</FormLabel>
+              <FormControl>
+                <PasswordInput placeholder="Enter password" {...field} />
+              </FormControl>
+              <FormDescription className="">Enter your password.</FormDescription>
+              <FormMessage className="" />
+            </FormItem>
+          )}
+        />
+        
+        
             <FormField
               control={form.control}
-              name="name_0249317447"
+              name="file"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Select File</FormLabel>
+                <FormItem className="">
+                  <FormLabel className="">Upload files</FormLabel>
                   <FormControl>
                     <FileUploader
                       value={files}
@@ -169,12 +177,12 @@ export default function disputeform() {
                       </FileUploaderContent>
                     </FileUploader>
                   </FormControl>
-                  <FormDescription>Select a file to upload.</FormDescription>
-                  <FormMessage />
+                  <FormDescription className="">Select your files</FormDescription>
+                  <FormMessage className="" />
                 </FormItem>
               )}
             />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="" variant="default" size="default">Submit</Button>
       </form>
     </Form>
   )
