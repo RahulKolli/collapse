@@ -1,11 +1,11 @@
-import MyForm from "@/components/dispute-form";
+import MyForm from "@/components/talent/dispute-form";
 import { Metadata } from "next";
 
-export default function RahulPage() {
-
+export default function DisputePage() {
   return (
     <>
-    <MyForm />
+      <h1 className="text-3xl font-bold mb-6 text-center">Raise a Dispute</h1>
+      <MyForm />
     </>
   );
 }
