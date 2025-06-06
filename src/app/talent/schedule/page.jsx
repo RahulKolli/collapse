@@ -46,7 +46,7 @@ export default function MeetingScheduling() {
 
       {/* Card container: Using shadcn's card background, text, and border colors. */}
       <div className="max-w-md w-full bg-card backdrop-blur-lg border border-border rounded-2xl p-8 space-y-6 shadow-lg text-card-foreground">
-        <h1 className="text-3xl font-semibold text-center text-foreground">Schedule a Meeting</h1>
+        <h1 className="text-2xl font-bold mb-6">Schedule a Meeting</h1>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Meeting Type Label: Using muted-foreground for labels */}

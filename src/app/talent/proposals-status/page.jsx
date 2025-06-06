@@ -76,7 +76,7 @@ export default function ProposalStatus() {
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Proposals Section */}
         <section>
-          <h1 className="text-2xl sm:text-3xl font-semibold">Your Proposals</h1>
+          <h1 className="text-2xl font-bold mb-6">Your Proposals</h1>
           <p className="text-sm text-muted-foreground mb-4">
             Track your application status in real-time.
           </p>

@@ -32,7 +32,7 @@ export default function GigTimeline() {
   return (
     <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-8 bg-background text-foreground transition-colors duration-300">
       <div className="max-w-6xl mx-auto space-y-10">
-        <h1 className="text-3xl font-bold mb-2 text-center">Gig Timeline</h1>
+        <h1 className="text-2xl font-bold mb-2 text-center">Gig Timeline</h1>
         <p className="text-center text-sm text-muted-foreground">
           Tracking progress for gig ID: <span className="text-foreground font-medium">{id}</span>
         </p>

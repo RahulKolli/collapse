@@ -13,7 +13,7 @@ export default function BrowseProjects() {
 
       <div className="max-w-6xl mx-auto space-y-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <h1 className="text-3xl font-semibold text-foreground">Open Projects</h1> {/* Uses foreground for heading */}
+          <h1 className="text-2xl font-bold mb-6">Open Projects</h1> {/* Uses foreground for heading */}
 
           {/* Filters section */}
           <div className="flex flex-wrap gap-3">

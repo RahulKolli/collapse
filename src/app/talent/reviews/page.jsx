@@ -65,7 +65,7 @@ export default function RatingsReviewHistory() {
 
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-semibold text-foreground">Ratings & Review History</h1>
+          <h1 className="text-3xl font-bold mb-6">Ratings & Review History</h1>
         </div>
         {reviews.length === 0 ? (
           // Text for no reviews: Using muted-foreground for secondary text.
