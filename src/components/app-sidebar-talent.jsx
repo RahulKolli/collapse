@@ -78,11 +78,6 @@ const data = {
     icon: IconFolder,
   },
   {
-    title: "Gig Timeline",
-    url: "/talent/timeline",
-    icon: IconUsers,
-  },
-  {
     title: "Meeting Scheduling",
     url: "/talent/schedule",
     icon: IconUsers,
@@ -97,16 +92,6 @@ const data = {
     url: "/talent/earnings",
     icon: IconUsers,
   },
-  {
-    title: "Disputes",
-    url: "/talent/dispute",
-    icon: IconUsers,
-  },
-  {
-    title: "Reviews and Ratings",
-    url: "/talent/reviews",
-    icon: IconUsers,
-  }
 ],
   navSecondary: [
     {

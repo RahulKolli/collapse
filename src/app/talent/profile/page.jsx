@@ -40,11 +40,12 @@ import { toast } from 'sonner';
 
 const formSchema = z.object({
   name: z.string().min(1, 'First name is required'),
-  lastname: z.string().min(1, 'Last name is required'),
   bio: z.string().min(1, 'Bio is required'),
   category: z.string(),
   city: z.string().min(1, 'City is required'),
   skills: z.array(z.string()).nonempty('Please select at least one skill'),
+  email: z.string().email('Invalid email address'),
+  phone: z.string().min(10, 'Phone number must be at least 10 digits').max(15, 'Phone number must be at most 15 digits'),
 });
 
 export default function TalentProfileSetup() {
@@ -120,6 +121,38 @@ export default function TalentProfileSetup() {
                 </FormItem>
               )}
             />
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex-1">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter your email address" type="email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="flex-1">
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone Number</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter your phone number" type="tel" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
             <FormField
               control={form.control}
               name="bio"

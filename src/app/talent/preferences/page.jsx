@@ -93,59 +93,61 @@ const AvailabilityFormModal = ({ isOpen, onClose, onSave, onDelete, initialData,
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 p-4">
-            <div className="rounded-lg shadow-xl w-full max-w-lg flex flex-col max-h-[90vh] overflow-hidden transition-colors duration-300 bg-card border border-border text-card-foreground">
-                <div className="flex justify-between items-center p-4 sm:p-6 border-b transition-colors duration-300 bg-muted border-border">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-foreground">
-                        {initialData ? 'Edit Detailed Availability' : 'Add New Detailed Availability'} for {selectedDate.toDateString()}
+        <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 p-4">
+            <div className="rounded-xl w-full max-w-lg flex flex-col max-h-[90vh] overflow-hidden bg-card text-card-foreground">
+                <div className="flex justify-between items-center px-6 py-3 bg-muted">
+                    <h2 className="text-2xl font-semibold text-foreground">
+                        {initialData ? 'Edit Availability' : 'Add Availability'}
+                        <span className="block text-xs font-normal text-muted-foreground mt-1">{selectedDate.toDateString()}</span>
                     </h2>
-                    <button onClick={onClose} className="text-2xl leading-none text-muted-foreground hover:text-foreground">
+                    <button onClick={onClose} className="text-xl leading-none text-muted-foreground hover:text-foreground px-2 py-1 rounded-full hover:bg-accent transition">
                         &times;
                     </button>
                 </div>
-                <div className="p-4 sm:p-6 flex-grow overflow-y-auto">
-                    <div className="mb-5">
-                        <label className="block text-sm font-bold mb-2 text-foreground">Preference Type:</label>
-                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
-                            <label className="inline-flex items-center">
+                <div className="px-6 py-5 flex-grow overflow-y-auto space-y-6">
+                    <div>
+                        <label className="block text-sm font-medium mb-2 text-muted-foreground">Preference Type</label>
+                        <div className="flex gap-3">
+                            <label className="flex items-center gap-2 cursor-pointer">
                                 <input
                                     type="radio"
                                     value="unavailable"
                                     checked={preferenceType === 'unavailable'}
                                     onChange={() => setPreferenceType('unavailable')}
-                                    className="form-radio h-4 w-4 text-destructive rounded border-border bg-input"
+                                    className="accent-destructive h-4 w-4 rounded bg-input border-none focus:ring-2 focus:ring-destructive/40"
                                 />
-                                <span className="ml-2 text-foreground">Unavailable to work</span>
+                                <span className="text-sm text-foreground">Unavailable</span>
                             </label>
-                            <label className="inline-flex items-center">
+                            <label className="flex items-center gap-2 cursor-pointer">
                                 <input
                                     type="radio"
                                     value="preferred"
                                     checked={preferenceType === 'preferred'}
                                     onChange={() => setPreferenceType('preferred')}
-                                    className="form-radio h-4 w-4 text-primary rounded border-border bg-input"
+                                    className="accent-primary h-4 w-4 rounded bg-input border-none focus:ring-2 focus:ring-primary/40"
                                 />
-                                <span className="ml-2 text-foreground">Prefer to work</span>
+                                <span className="text-sm text-foreground">Preferred</span>
                             </label>
                         </div>
                     </div>
-                    <div className="mb-5">
-                        <label className="block text-sm font-bold mb-2 text-foreground">Time:</label>
-                        <label className="inline-flex items-center mb-3">
+                    <div>
+                        <label className="block text-sm font-medium mb-2 text-foreground">Time</label>
+                        <div className="flex items-center gap-4 mb-2">
                             <input
                                 type="checkbox"
                                 checked={allDay}
                                 onChange={(e) => setAllDay(e.target.checked)}
-                                className="form-checkbox h-4 w-4 text-primary rounded border-border bg-input"
+                                className="accent-primary h-4 w-4 rounded border-border bg-input"
+                                id="allDayCheckbox"
                             />
-                            <span className="ml-2 text-foreground">All Day</span>
-                        </label>
+                            <label htmlFor="allDayCheckbox" className="text-foreground cursor-pointer">All Day</label>
+                        </div>
                         {!allDay && (
                             <div className="flex items-center gap-3">
                                 <select
                                     value={startTime}
                                     onChange={(e) => setStartTime(e.target.value)}
-                                    className="block w-full p-2 rounded-md shadow-sm focus:ring-ring focus:border-ring sm:text-sm bg-input border border-border text-foreground"
+                                    className="block w-32 p-2 rounded-md focus:ring-ring focus:border-ring sm:text-sm bg-input border border-border text-foreground"
                                 >
                                     {generateTimeOptions().map(time => (
                                         <option key={time} value={time} className="bg-background text-foreground">{time}</option>
@@ -155,7 +157,7 @@ const AvailabilityFormModal = ({ isOpen, onClose, onSave, onDelete, initialData,
                                 <select
                                     value={endTime}
                                     onChange={(e) => setEndTime(e.target.value)}
-                                    className="block w-full p-2 rounded-md shadow-sm focus:ring-ring focus:border-ring sm:text-sm bg-input border border-border text-foreground"
+                                    className="block w-32 p-2 rounded-md focus:ring-ring focus:border-ring sm:text-sm bg-input border border-border text-foreground"
                                 >
                                     {generateTimeOptions().map(time => (
                                         <option key={time} value={time} className="bg-background text-foreground">{time}</option>
@@ -164,49 +166,50 @@ const AvailabilityFormModal = ({ isOpen, onClose, onSave, onDelete, initialData,
                             </div>
                         )}
                     </div>
-                    <div className="mb-5">
-                        <label className="block text-sm font-bold mb-2 text-foreground">Repeats:</label>
-                        <label className="inline-flex items-center mb-3">
+                    <div>
+                        <label className="block text-sm font-medium mb-2 text-foreground">Repeats</label>
+                        <div className="flex items-center gap-4 mb-2">
                             <input
                                 type="checkbox"
                                 checked={repeating}
                                 onChange={(e) => setRepeating(e.target.checked)}
-                                className="form-checkbox h-4 w-4 text-primary rounded border-border bg-input"
+                                className="accent-primary h-4 w-4 rounded border-border bg-input"
+                                id="repeatingCheckbox"
                             />
-                            <span className="ml-2 text-foreground">Enable repeating</span>
-                        </label>
+                            <label htmlFor="repeatingCheckbox" className="text-foreground cursor-pointer">Enable repeating</label>
+                        </div>
                         {repeating && (
                             <>
                                 <div className="flex flex-wrap gap-4 mb-4">
-                                    <label className="inline-flex items-center">
+                                    <label className="flex items-center gap-2 cursor-pointer">
                                         <input
                                             type="radio"
                                             value="day"
                                             checked={repeatFrequency === 'day'}
                                             onChange={() => setRepeatFrequency('day')}
-                                            className="form-radio h-4 w-4 text-primary border-border bg-input"
+                                            className="accent-primary h-4 w-4 border-border bg-input"
                                         />
-                                        <span className="ml-2 text-foreground">Every Day</span>
+                                        <span className="text-foreground">Every Day</span>
                                     </label>
-                                    <label className="inline-flex items-center">
+                                    <label className="flex items-center gap-2 cursor-pointer">
                                         <input
                                             type="radio"
                                             value="week"
                                             checked={repeatFrequency === 'week'}
                                             onChange={() => setRepeatFrequency('week')}
-                                            className="form-radio h-4 w-4 text-primary border-border bg-input"
+                                            className="accent-primary h-4 w-4 border-border bg-input"
                                         />
-                                        <span className="ml-2 text-foreground">Every Week</span>
+                                        <span className="text-foreground">Every Week</span>
                                     </label>
-                                    <label className="inline-flex items-center">
+                                    <label className="flex items-center gap-2 cursor-pointer">
                                         <input
                                             type="radio"
                                             value="2weeks"
                                             checked={repeatFrequency === '2weeks'}
                                             onChange={() => setRepeatFrequency('2weeks')}
-                                            className="form-radio h-4 w-4 text-primary border-border bg-input"
+                                            className="accent-primary h-4 w-4 border-border bg-input"
                                         />
-                                        <span className="ml-2 text-foreground">Every 2 Weeks</span>
+                                        <span className="text-foreground">Every 2 Weeks</span>
                                     </label>
                                 </div>
                                 {repeatFrequency !== 'day' && (
@@ -214,11 +217,11 @@ const AvailabilityFormModal = ({ isOpen, onClose, onSave, onDelete, initialData,
                                         {daysOfWeekFull.map(day => (
                                             <button
                                                 key={day}
+                                                type="button"
                                                 onClick={() => handleRepeatDayToggle(day)}
-                                                className={`px-3 py-1 rounded-full text-sm font-medium border transition ease-in-out duration-150 ${repeatDays.includes(day)
-                                                        ? 'bg-primary text-primary-foreground border-primary'
-                                                        : 'bg-muted text-muted-foreground border-border hover:bg-accent'
-                                                    }
+                                                className={`px-3 py-1 rounded-full text-xs font-medium border transition ${repeatDays.includes(day)
+                                                    ? 'bg-primary text-primary-foreground border-primary shadow'
+                                                    : 'bg-muted text-muted-foreground border-border hover:bg-accent'}
                                                 `}
                                             >
                                                 {day.substring(0, 3)}
@@ -226,49 +229,49 @@ const AvailabilityFormModal = ({ isOpen, onClose, onSave, onDelete, initialData,
                                         ))}
                                     </div>
                                 )}
-                                <div className="mb-4">
-                                    <label htmlFor="endsOn" className="block text-sm font-bold mb-2 text-foreground">Ends On (optional):</label>
+                                <div className="mb-2">
+                                    <label htmlFor="endsOn" className="block text-xs font-semibold mb-1 text-foreground">Ends On (optional)</label>
                                     <input
                                         type="date"
                                         id="endsOn"
                                         value={endsOn}
                                         onChange={(e) => setEndsOn(e.target.value)}
-                                        className="block w-full p-2 rounded-md shadow-sm focus:ring-ring focus:border-ring sm:text-sm bg-input border border-border text-foreground"
+                                        className="block w-40 p-2 rounded-md focus:ring-ring focus:border-ring sm:text-sm bg-input border border-border text-foreground"
                                     />
                                 </div>
                             </>
                         )}
                     </div>
-                    <div className="mb-5">
-                        <label htmlFor="note" className="block text-sm font-bold mb-2 text-foreground">Note (optional):</label>
+                    <div>
+                        <label htmlFor="note" className="block text-sm font-semibold mb-2 text-foreground">Note (optional)</label>
                         <textarea
                             id="note"
                             value={note}
                             onChange={(e) => setNote(e.target.value)}
-                            rows="3"
+                            rows="2"
                             placeholder="Add a note about this availability"
-                            className="block w-full p-2 rounded-md shadow-sm focus:ring-ring focus:border-ring sm:text-sm resize-y bg-input border border-border text-foreground placeholder-muted-foreground"
+                            className="block w-full p-2 rounded-md focus:ring-ring focus:border-ring sm:text-sm resize-y bg-input border border-border text-foreground placeholder-muted-foreground"
                         ></textarea>
                     </div>
                 </div>
-                <div className="flex justify-end p-4 sm:p-6 border-t gap-3 transition-colors duration-300 bg-muted border-border">
+                <div className="flex justify-end gap-2 px-6 py-3 bg-muted">
                     {initialData && (
                         <button
                             onClick={handleDelete}
-                            className="px-5 py-2 bg-destructive text-destructive-foreground font-semibold rounded-md hover:bg-destructive/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-opacity-50 transition ease-in-out duration-150 mr-auto shadow-md"
+                            className="px-3 py-1.5 border border-destructive text-destructive bg-transparent font-normal rounded hover:bg-destructive/10 focus:outline-none focus:ring-2 focus:ring-destructive/30 transition"
                         >
                             Delete
                         </button>
                     )}
                     <button
                         onClick={onClose}
-                        className="px-5 py-2 rounded-md font-semibold focus:outline-none focus:ring-2 focus:ring-ring focus:ring-opacity-50 transition ease-in-out duration-150 shadow-md bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                        className="px-3 py-1.5 border border-secondary text-secondary bg-transparent font-normal rounded focus:outline-none focus:ring-2 focus:ring-secondary/30 transition"
                     >
                         Cancel
                     </button>
                     <button
                         onClick={handleSave}
-                        className="px-5 py-2 bg-primary text-primary-foreground font-semibold rounded-md hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-opacity-50 transition ease-in-out duration-150 shadow-md"
+                        className="px-3 py-1.5 border border-primary text-primary bg-transparent font-normal rounded hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
                     >
                         Save
                     </button>
@@ -307,15 +310,21 @@ export default function WorkPreferences() {
     };
 
     const handleEditPreference = (preference) => {
+        // Find the date for the preference to ensure modal shows the correct date
         const preferenceDateKey = Object.keys(availabilityData).find(key =>
             availabilityData[key].some(p => p.id === preference.id)
         );
         if (preferenceDateKey) {
             setSelectedDate(new Date(preferenceDateKey));
+        } else {
+            // If the preference doesn't exist for the current date, assume it's for the selected date
+            // This might happen if editing a new repeating preference that hasn't been spread across dates
+            setSelectedDate(new Date()); // Or default to today
         }
         setEditingPreference(preference);
         setIsModalOpen(true);
     };
+
 
     const handleSavePreference = (newPreference) => {
         const dateKey = formatDate(selectedDate);
@@ -388,31 +397,29 @@ export default function WorkPreferences() {
                 {/* <ModeToggle /> */}
             </div>
 
-            <div className="rounded-2xl p-6 sm:p-8 w-full max-w-4xl shadow-2xl space-y-6 relative transition-colors duration-300 bg-card border border-border text-card-foreground dark:backdrop-blur-lg">
-                <h1 className="text-3xl font-bold mb-6">Availability & Preferences</h1>
+            <div className="rounded-2xl p-6 sm:p-8 w-full max-w-4xl space-y-6 relative transition-colors duration-300 bg-card text-card-foreground dark:backdrop-blur-lg">
+                <h1 className="text-2xl font-bold mb-6">Availability & Preferences</h1>
                 <p className="text-sm sm:text-base text-muted-foreground mb-6">Let us know when you're free and what work you prefer</p>
 
                 {/* --- Tab Navigation --- */}
                 <div className="flex border-b border-border mb-6">
                     <button
                         onClick={() => setActiveTab('general')}
-                        className={`py-3 px-6 text-lg font-medium transition-colors duration-200
-                            ${activeTab === 'general'
-                                ? 'border-b-2 border-primary text-primary-foreground bg-accent'
-                                : 'text-muted-foreground hover:text-foreground border-b-2 border-transparent'
-                            }
-                        `}
+                        className={`py-3 px-6 text-lg font-medium transition-colors duration-200 rounded-md border ${activeTab === 'general'
+                                ? 'border-primary text-primary bg-primary/10'
+                                : 'border-border text-foreground bg-transparent hover:bg-accent'}
+                            `}
+                        type="button"
                     >
                         General Preferences
                     </button>
                     <button
                         onClick={() => setActiveTab('detailed')}
-                        className={`py-3 px-6 text-lg font-medium transition-colors duration-200
-                            ${activeTab === 'detailed'
-                                ? 'border-b-2 border-primary text-primary-foreground bg-accent'
-                                : 'text-muted-foreground hover:text-foreground border-b-2 border-transparent'
-                            }
-                        `}
+                        className={`py-3 px-6 text-lg font-medium transition-colors duration-200 rounded-md border ml-2 ${activeTab === 'detailed'
+                                ? 'border-primary text-primary bg-primary/10'
+                                : 'border-border text-foreground bg-transparent hover:bg-accent'}
+                            `}
+                        type="button"
                     >
                         Detailed Availability
                     </button>
@@ -513,7 +520,7 @@ export default function WorkPreferences() {
                             <button
                                 type="button"
                                 onClick={handleSaveGeneralPreferences}
-                                className="w-full bg-primary hover:bg-primary/90 transition-all py-3 rounded-lg font-semibold text-primary-foreground shadow-lg"
+                                className="w-full border border-primary text-primary bg-transparent hover:bg-primary/10 transition-all py-3 rounded-lg font-semibold focus:outline-none focus:ring-2 focus:ring-primary/30"
                             >
                                 Save General Preferences
                             </button>
@@ -556,58 +563,51 @@ export default function WorkPreferences() {
                                             className="rounded-lg p-4 shadow-sm flex flex-col justify-between bg-background border border-border"
                                         >
                                             <div>
-                                                <div className={`text-lg font-bold mb-2 ${pref.type === 'unavailable' ? 'text-destructive' : 'text-primary'}`}>
+                                                <p className={`text-sm font-semibold mb-1 ${pref.type === 'unavailable' ? 'text-destructive' : 'text-primary'}`}>
                                                     {pref.type === 'unavailable' ? 'Unavailable' : 'Preferred'}
-                                                </div>
-                                                {pref.allDay ? (
-                                                    <p className="text-sm text-muted-foreground mb-1">All Day</p>
-                                                ) : (
-                                                    <p className="text-sm text-muted-foreground mb-1">
-                                                        {pref.startTime} - {pref.endTime}
-                                                    </p>
-                                                )}
+                                                </p>
+                                                <p className="text-lg font-bold text-foreground">
+                                                    {pref.allDay ? 'All Day' : `${pref.startTime} - ${pref.endTime}`}
+                                                </p>
                                                 {pref.repeating && (
-                                                    <p className="text-xs text-muted-foreground mb-1">
+                                                    <p className="text-sm text-muted-foreground mt-1">
                                                         Repeats: {pref.repeatFrequency === 'day' ? 'Every Day' : `Every ${pref.repeatFrequency === 'week' ? 'Week' : '2 Weeks'}`}
-                                                        {pref.repeatFrequency !== 'day' && pref.repeatDays.length > 0 && ` on ${pref.repeatDays.map(d => d.substring(0, 3)).join(', ')}`}
+                                                        {pref.repeatDays && pref.repeatDays.length > 0 && ` on ${pref.repeatDays.map(d => d.substring(0, 3)).join(', ')}`}
                                                         {pref.endsOn && ` until ${new Date(pref.endsOn).toDateString()}`}
                                                     </p>
                                                 )}
                                                 {pref.note && (
-                                                    <p className="text-sm italic text-muted-foreground">"{pref.note}"</p>
+                                                    <p className="text-sm text-muted-foreground mt-2 italic">
+                                                        Note: {pref.note}
+                                                    </p>
                                                 )}
                                             </div>
-                                            <button
-                                                onClick={() => handleEditPreference(pref)}
-                                                className="mt-4 px-4 py-2 bg-secondary text-secondary-foreground rounded-md text-sm font-medium hover:bg-secondary/80 self-end transition-colors duration-200"
-                                            >
-                                                Edit
-                                            </button>
+                                            <div className="mt-4 text-right">
+                                                <button
+                                                    onClick={() => handleEditPreference(pref)}
+                                                    className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md text-sm hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-opacity-50"
+                                                >
+                                                    Edit
+                                                </button>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
                             )}
 
-                            {/* Add New Detailed Preference Button */}
-                            <div className="flex justify-center mt-6">
+                            {/* Action Buttons for Detailed Availability */}
+                            <div className="flex flex-col sm:flex-row gap-4">
                                 <button
                                     onClick={handleAddPreference}
-                                    className="px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg shadow-lg hover:bg-primary/90 transition-all duration-200 flex items-center gap-2"
+                                    className="w-full sm:w-auto px-6 py-3 border border-primary text-primary bg-transparent hover:bg-primary/10 font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
-                                    </svg>
-                                    Add New Availability
+                                    Add New Preference for {selectedDate.toDateString()}
                                 </button>
-                            </div>
-
-                            {/* Reset All Future Preferences Button */}
-                            <div className="text-center mt-8">
                                 <button
                                     onClick={handleResetAllFuture}
-                                    className="text-sm text-destructive hover:underline"
+                                    className="w-full sm:w-auto px-6 py-3 border border-destructive text-destructive bg-transparent hover:bg-destructive/10 font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-destructive/30 transition"
                                 >
-                                    Reset all future detailed availability
+                                    Reset All Future Detailed Availability
                                 </button>
                             </div>
                         </div>
