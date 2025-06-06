@@ -114,7 +114,6 @@ export default function MyForm() {
                   {...field}
                 />
               </FormControl>
-              <FormDescription className="">You can @mention other users and organizations.</FormDescription>
               <FormMessage className="" />
             </FormItem>
           )}
@@ -177,7 +176,6 @@ export default function MyForm() {
               <Calendar className="" classNames={{}} mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
             </PopoverContent>
           </Popover>
-       <FormDescription className="">Your date of birth is used to calculate your age.</FormDescription>
           <FormMessage className="" />
         </FormItem>
       )}

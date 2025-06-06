@@ -183,7 +183,6 @@ export default function TalentProfileSetup() {
                         <SelectContent>
                           <SelectItem value="fashion">Fashion</SelectItem>
                           <SelectItem value="tech">Tech</SelectItem>
-                          <SelectItem value="fitness">Fitness</SelectItem>
                           <SelectItem value="food">Food</SelectItem>
                           <SelectItem value="lifestyle">Lifestyle</SelectItem>
                         </SelectContent>

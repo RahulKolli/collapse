@@ -93,16 +93,16 @@ const talent = {
 
 export default function TalentPortfolioPage() {
   return (
-    <div className="min-h-screen bg-background px-4 py-8 text-foreground transition-colors duration-300 relative">
+    <div className="min-h-screen bg-background px-4 text-foreground transition-colors duration-300 relative">
       {/* ModeToggle positioned at the top-right corner */}
       <div className="absolute top-4 right-4 z-10">
       </div>
 
       <div className="max-w-6xl mx-auto">
         {/* Portfolio Heading */}
-        <h1 className="text-2xl font-bold mb-8">Portfolio</h1>
+        <h1 className="text-2xl font-bold mb-4">Portfolio</h1>
         {/* Header */}
-        <header className="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <header className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-center gap-4">
             {/* Profile Image */}
             <Image
