@@ -93,61 +93,59 @@ const AvailabilityFormModal = ({ isOpen, onClose, onSave, onDelete, initialData,
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 p-4">
-            <div className="rounded-xl w-full max-w-lg flex flex-col max-h-[90vh] overflow-hidden bg-card text-card-foreground">
-                <div className="flex justify-between items-center px-6 py-3 bg-muted">
-                    <h2 className="text-2xl font-semibold text-foreground">
-                        {initialData ? 'Edit Availability' : 'Add Availability'}
-                        <span className="block text-xs font-normal text-muted-foreground mt-1">{selectedDate.toDateString()}</span>
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 p-4">
+            <div className="rounded-lg shadow-xl w-full max-w-lg flex flex-col max-h-[90vh] overflow-hidden transition-colors duration-300 bg-card border border-border text-card-foreground">
+                <div className="flex justify-between items-center p-4 sm:p-6 border-b transition-colors duration-300 bg-muted border-border">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-foreground">
+                        {initialData ? 'Edit Detailed Availability' : 'Add New Detailed Availability'} for {selectedDate.toDateString()}
                     </h2>
-                    <button onClick={onClose} className="text-xl leading-none text-muted-foreground hover:text-foreground px-2 py-1 rounded-full hover:bg-accent transition">
+                    <button onClick={onClose} className="text-2xl leading-none text-muted-foreground hover:text-foreground">
                         &times;
                     </button>
                 </div>
-                <div className="px-6 py-5 flex-grow overflow-y-auto space-y-6">
-                    <div>
-                        <label className="block text-sm font-medium mb-2 text-muted-foreground">Preference Type</label>
-                        <div className="flex gap-3">
-                            <label className="flex items-center gap-2 cursor-pointer">
+                <div className="p-4 sm:p-6 flex-grow overflow-y-auto">
+                    <div className="mb-5">
+                        <label className="block text-sm font-bold mb-2 text-foreground">Preference Type:</label>
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
+                            <label className="inline-flex items-center">
                                 <input
                                     type="radio"
                                     value="unavailable"
                                     checked={preferenceType === 'unavailable'}
                                     onChange={() => setPreferenceType('unavailable')}
-                                    className="accent-destructive h-4 w-4 rounded bg-input border-none focus:ring-2 focus:ring-destructive/40"
+                                    className="form-radio h-4 w-4 text-destructive rounded border-border bg-input"
                                 />
-                                <span className="text-sm text-foreground">Unavailable</span>
+                                <span className="ml-2 text-foreground">Unavailable to work</span>
                             </label>
-                            <label className="flex items-center gap-2 cursor-pointer">
+                            <label className="inline-flex items-center">
                                 <input
                                     type="radio"
                                     value="preferred"
                                     checked={preferenceType === 'preferred'}
                                     onChange={() => setPreferenceType('preferred')}
-                                    className="accent-primary h-4 w-4 rounded bg-input border-none focus:ring-2 focus:ring-primary/40"
+                                    className="form-radio h-4 w-4 text-primary rounded border-border bg-input"
                                 />
-                                <span className="text-sm text-foreground">Preferred</span>
+                                <span className="ml-2 text-foreground">Prefer to work</span>
                             </label>
                         </div>
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium mb-2 text-foreground">Time</label>
-                        <div className="flex items-center gap-4 mb-2">
+                    <div className="mb-5">
+                        <label className="block text-sm font-bold mb-2 text-foreground">Time:</label>
+                        <label className="inline-flex items-center mb-3">
                             <input
                                 type="checkbox"
                                 checked={allDay}
                                 onChange={(e) => setAllDay(e.target.checked)}
-                                className="accent-primary h-4 w-4 rounded border-border bg-input"
-                                id="allDayCheckbox"
+                                className="form-checkbox h-4 w-4 text-primary rounded border-border bg-input"
                             />
-                            <label htmlFor="allDayCheckbox" className="text-foreground cursor-pointer">All Day</label>
-                        </div>
+                            <span className="ml-2 text-foreground">All Day</span>
+                        </label>
                         {!allDay && (
                             <div className="flex items-center gap-3">
                                 <select
                                     value={startTime}
                                     onChange={(e) => setStartTime(e.target.value)}
-                                    className="block w-32 p-2 rounded-md focus:ring-ring focus:border-ring sm:text-sm bg-input border border-border text-foreground"
+                                    className="block w-full p-2 rounded-md shadow-sm focus:ring-ring focus:border-ring sm:text-sm bg-input border border-border text-foreground"
                                 >
                                     {generateTimeOptions().map(time => (
                                         <option key={time} value={time} className="bg-background text-foreground">{time}</option>
@@ -157,7 +155,7 @@ const AvailabilityFormModal = ({ isOpen, onClose, onSave, onDelete, initialData,
                                 <select
                                     value={endTime}
                                     onChange={(e) => setEndTime(e.target.value)}
-                                    className="block w-32 p-2 rounded-md focus:ring-ring focus:border-ring sm:text-sm bg-input border border-border text-foreground"
+                                    className="block w-full p-2 rounded-md shadow-sm focus:ring-ring focus:border-ring sm:text-sm bg-input border border-border text-foreground"
                                 >
                                     {generateTimeOptions().map(time => (
                                         <option key={time} value={time} className="bg-background text-foreground">{time}</option>
@@ -166,50 +164,49 @@ const AvailabilityFormModal = ({ isOpen, onClose, onSave, onDelete, initialData,
                             </div>
                         )}
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium mb-2 text-foreground">Repeats</label>
-                        <div className="flex items-center gap-4 mb-2">
+                    <div className="mb-5">
+                        <label className="block text-sm font-bold mb-2 text-foreground">Repeats:</label>
+                        <label className="inline-flex items-center mb-3">
                             <input
                                 type="checkbox"
                                 checked={repeating}
                                 onChange={(e) => setRepeating(e.target.checked)}
-                                className="accent-primary h-4 w-4 rounded border-border bg-input"
-                                id="repeatingCheckbox"
+                                className="form-checkbox h-4 w-4 text-primary rounded border-border bg-input"
                             />
-                            <label htmlFor="repeatingCheckbox" className="text-foreground cursor-pointer">Enable repeating</label>
-                        </div>
+                            <span className="ml-2 text-foreground">Enable repeating</span>
+                        </label>
                         {repeating && (
                             <>
                                 <div className="flex flex-wrap gap-4 mb-4">
-                                    <label className="flex items-center gap-2 cursor-pointer">
+                                    <label className="inline-flex items-center">
                                         <input
                                             type="radio"
                                             value="day"
                                             checked={repeatFrequency === 'day'}
                                             onChange={() => setRepeatFrequency('day')}
-                                            className="accent-primary h-4 w-4 border-border bg-input"
+                                            className="form-radio h-4 w-4 text-primary border-border bg-input"
                                         />
-                                        <span className="text-foreground">Every Day</span>
+                                        <span className="ml-2 text-foreground">Every Day</span>
                                     </label>
-                                    <label className="flex items-center gap-2 cursor-pointer">
+                                    <label className="inline-flex items-center">
                                         <input
                                             type="radio"
                                             value="week"
                                             checked={repeatFrequency === 'week'}
                                             onChange={() => setRepeatFrequency('week')}
-                                            className="accent-primary h-4 w-4 border-border bg-input"
+                                            className="form-radio h-4 w-4 text-primary border-border bg-input"
                                         />
-                                        <span className="text-foreground">Every Week</span>
+                                        <span className="ml-2 text-foreground">Every Week</span>
                                     </label>
-                                    <label className="flex items-center gap-2 cursor-pointer">
+                                    <label className="inline-flex items-center">
                                         <input
                                             type="radio"
                                             value="2weeks"
                                             checked={repeatFrequency === '2weeks'}
                                             onChange={() => setRepeatFrequency('2weeks')}
-                                            className="accent-primary h-4 w-4 border-border bg-input"
+                                            className="form-radio h-4 w-4 text-primary border-border bg-input"
                                         />
-                                        <span className="text-foreground">Every 2 Weeks</span>
+                                        <span className="ml-2 text-foreground">Every 2 Weeks</span>
                                     </label>
                                 </div>
                                 {repeatFrequency !== 'day' && (
@@ -217,11 +214,11 @@ const AvailabilityFormModal = ({ isOpen, onClose, onSave, onDelete, initialData,
                                         {daysOfWeekFull.map(day => (
                                             <button
                                                 key={day}
-                                                type="button"
                                                 onClick={() => handleRepeatDayToggle(day)}
-                                                className={`px-3 py-1 rounded-full text-xs font-medium border transition ${repeatDays.includes(day)
-                                                    ? 'bg-primary text-primary-foreground border-primary shadow'
-                                                    : 'bg-muted text-muted-foreground border-border hover:bg-accent'}
+                                                className={`px-3 py-1 rounded-full text-sm font-medium border transition ease-in-out duration-150 ${repeatDays.includes(day)
+                                                        ? 'bg-primary text-primary-foreground border-primary'
+                                                        : 'bg-muted text-muted-foreground border-border hover:bg-accent'
+                                                    }
                                                 `}
                                             >
                                                 {day.substring(0, 3)}
@@ -229,49 +226,49 @@ const AvailabilityFormModal = ({ isOpen, onClose, onSave, onDelete, initialData,
                                         ))}
                                     </div>
                                 )}
-                                <div className="mb-2">
-                                    <label htmlFor="endsOn" className="block text-xs font-semibold mb-1 text-foreground">Ends On (optional)</label>
+                                <div className="mb-4">
+                                    <label htmlFor="endsOn" className="block text-sm font-bold mb-2 text-foreground">Ends On (optional):</label>
                                     <input
                                         type="date"
                                         id="endsOn"
                                         value={endsOn}
                                         onChange={(e) => setEndsOn(e.target.value)}
-                                        className="block w-40 p-2 rounded-md focus:ring-ring focus:border-ring sm:text-sm bg-input border border-border text-foreground"
+                                        className="block w-full p-2 rounded-md shadow-sm focus:ring-ring focus:border-ring sm:text-sm bg-input border border-border text-foreground"
                                     />
                                 </div>
                             </>
                         )}
                     </div>
-                    <div>
-                        <label htmlFor="note" className="block text-sm font-semibold mb-2 text-foreground">Note (optional)</label>
+                    <div className="mb-5">
+                        <label htmlFor="note" className="block text-sm font-bold mb-2 text-foreground">Note (optional):</label>
                         <textarea
                             id="note"
                             value={note}
                             onChange={(e) => setNote(e.target.value)}
-                            rows="2"
+                            rows="3"
                             placeholder="Add a note about this availability"
-                            className="block w-full p-2 rounded-md focus:ring-ring focus:border-ring sm:text-sm resize-y bg-input border border-border text-foreground placeholder-muted-foreground"
+                            className="block w-full p-2 rounded-md shadow-sm focus:ring-ring focus:border-ring sm:text-sm resize-y bg-input border border-border text-foreground placeholder-muted-foreground"
                         ></textarea>
                     </div>
                 </div>
-                <div className="flex justify-end gap-2 px-6 py-3 bg-muted">
+                <div className="flex justify-end p-4 sm:p-6 border-t gap-3 transition-colors duration-300 bg-muted border-border">
                     {initialData && (
                         <button
                             onClick={handleDelete}
-                            className="px-3 py-1.5 border border-destructive text-destructive bg-transparent font-normal rounded hover:bg-destructive/10 focus:outline-none focus:ring-2 focus:ring-destructive/30 transition"
+                            className="px-3 py-1.5 border border-destructive text-destructive bg-transparent font-normal rounded-md focus:outline-none focus:ring-2 focus:ring-destructive/30 transition"
                         >
                             Delete
                         </button>
                     )}
                     <button
                         onClick={onClose}
-                        className="px-3 py-1.5 border border-secondary text-secondary bg-transparent font-normal rounded focus:outline-none focus:ring-2 focus:ring-secondary/30 transition"
+                        className="px-3 py-1.5 border border-secondary text-secondary bg-transparent font-normal rounded-md focus:outline-none focus:ring-2 focus:ring-secondary/30 transition"
                     >
                         Cancel
                     </button>
                     <button
                         onClick={handleSave}
-                        className="px-3 py-1.5 border border-primary text-primary bg-transparent font-normal rounded hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
+                        className="px-3 py-1.5 border border-primary text-primary bg-transparent font-normal rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
                     >
                         Save
                     </button>
@@ -283,7 +280,15 @@ const AvailabilityFormModal = ({ isOpen, onClose, onSave, onDelete, initialData,
 
 // Main WorkPreferences component
 export default function WorkPreferences() {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(() => {
+        // Ensure deterministic date for hydration: use string, not Date object
+        if (typeof window !== 'undefined') {
+          // On client, use today
+          return new Date();
+        }
+        // On server, use a fixed date string (ISO format)
+        return new Date('2025-06-06T00:00:00.000Z');
+      });
     const [availabilityData, setAvailabilityData] = useState({
         '2025-06-01': [{ id: '1', type: 'unavailable', startTime: '09:00', endTime: '17:00', note: 'Doctor appointment' }],
         '2025-06-05': [{ id: '2', type: 'preferred', startTime: '10:00', endTime: '14:00', note: 'Prefer short shift' }],
@@ -310,21 +315,15 @@ export default function WorkPreferences() {
     };
 
     const handleEditPreference = (preference) => {
-        // Find the date for the preference to ensure modal shows the correct date
         const preferenceDateKey = Object.keys(availabilityData).find(key =>
             availabilityData[key].some(p => p.id === preference.id)
         );
         if (preferenceDateKey) {
             setSelectedDate(new Date(preferenceDateKey));
-        } else {
-            // If the preference doesn't exist for the current date, assume it's for the selected date
-            // This might happen if editing a new repeating preference that hasn't been spread across dates
-            setSelectedDate(new Date()); // Or default to today
         }
         setEditingPreference(preference);
         setIsModalOpen(true);
     };
-
 
     const handleSavePreference = (newPreference) => {
         const dateKey = formatDate(selectedDate);
@@ -402,220 +401,232 @@ export default function WorkPreferences() {
                 <p className="text-sm sm:text-base text-muted-foreground mb-6">Let us know when you're free and what work you prefer</p>
 
                 {/* --- Tab Navigation --- */}
-                <div className="flex border-b border-border mb-6">
-                    <button
-                        onClick={() => setActiveTab('general')}
-                        className={`py-3 px-6 text-lg font-medium transition-colors duration-200 rounded-md border ${activeTab === 'general'
-                                ? 'border-primary text-primary bg-primary/10'
-                                : 'border-border text-foreground bg-transparent hover:bg-accent'}
-                            `}
-                        type="button"
-                    >
-                        General Preferences
-                    </button>
-                    <button
-                        onClick={() => setActiveTab('detailed')}
-                        className={`py-3 px-6 text-lg font-medium transition-colors duration-200 rounded-md border ml-2 ${activeTab === 'detailed'
-                                ? 'border-primary text-primary bg-primary/10'
-                                : 'border-border text-foreground bg-transparent hover:bg-accent'}
-                            `}
-                        type="button"
-                    >
-                        Detailed Availability
-                    </button>
+                <div className="flex gap-2 mb-6 border-b border-border">
+                  <button
+                    onClick={() => setActiveTab('general')}
+                    className={`py-3 px-6 text-lg font-medium transition-colors duration-200 rounded-t-md border border-b-0 focus:outline-none focus:ring-2 focus:ring-primary/30
+                      ${activeTab === 'general'
+                        ? 'bg-primary text-primary-foreground border-primary z-10'
+                        : 'bg-muted text-muted-foreground border-border hover:bg-accent'}
+                    `}
+                    type="button"
+                    style={{ marginBottom: '-1px' }}
+                  >
+                    General Preferences
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('detailed')}
+                    className={`py-3 px-6 text-lg font-medium transition-colors duration-200 rounded-t-md border border-b-0 focus:outline-none focus:ring-2 focus:ring-primary/30
+                      ${activeTab === 'detailed'
+                        ? 'bg-primary text-primary-foreground border-primary z-10'
+                        : 'bg-muted text-muted-foreground border-border hover:bg-accent'}
+                    `}
+                    type="button"
+                    style={{ marginBottom: '-1px' }}
+                  >
+                    Detailed Availability
+                  </button>
                 </div>
 
                 {/* --- Tab Content: General Preferences --- */}
                 {activeTab === 'general' && (
-                    <div className="rounded-xl p-4 sm:p-6 border border-border bg-card shadow-lg animate-fade-in">
-                        <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-6">Your General Work Preferences</h2>
-                        <form className="space-y-6">
-                            {/* Available Days */}
-                            <div>
-                                <label className="block mb-3 text-base font-medium text-foreground">Available Days</label>
-                                <div className="grid grid-cols-3 sm:grid-cols-7 gap-2">
-                                    {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
-                                        <button
-                                            key={day}
-                                            type="button"
-                                            onClick={() => handleDayToggle(day)}
-                                            className={`py-2 rounded-lg border text-sm font-medium transition-all duration-200 ${availableDays.includes(day)
-                                                        ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg border-primary'
-                                                        : 'bg-background hover:bg-accent text-foreground border-border'
-                                                }`}
-                                        >
-                                            {day}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Preferred Time Slots */}
-                            <div>
-                                <label className="block mb-3 text-base font-medium text-foreground">Preferred Time Slots</label>
-                                <select
-                                    value={preferredTimeSlot}
-                                    onChange={(e) => setPreferredTimeSlot(e.target.value)}
-                                    className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring appearance-none custom-select bg-input border border-border text-foreground"
-                                >
-                                    <option value="" disabled className="bg-background text-muted-foreground">Select time slot</option>
-                                    <option value="morning" className="bg-background text-foreground">Morning (9am - 12pm)</option>
-                                    <option value="afternoon" className="bg-background text-foreground">Afternoon (12pm - 4pm)</option>
-                                    <option value="evening" className="bg-background text-foreground">Evening (4pm - 8pm)</option>
-                                    <option value="night" className="bg-background text-foreground">Night (8pm - 11pm)</option>
-                                </select>
-                                <style jsx>{`
-                                    .custom-select {
-                                        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%234b5563' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-                                        background-repeat: no-repeat;
-                                        background-position: right 0.75rem center;
-                                        background-size: 0.8rem 0.8rem;
-                                    }
-                                    html.dark .custom-select {
-                                        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-                                    }
-                                `}</style>
-                            </div>
-
-                            {/* Work Type Preference */}
-                            <div>
-                                <label className="block mb-3 text-base font-medium text-foreground">Work Type</label>
-                                <div className="flex flex-wrap gap-4">
-                                    {['Remote', 'In-Person', 'Hybrid'].map((type) => (
-                                        <label
-                                            key={type}
-                                            className={`px-5 py-2 border rounded-lg cursor-pointer transition-all duration-200 ${workTypePreference === type
-                                                        ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg border-primary'
-                                                        : 'bg-muted hover:bg-accent text-foreground border-border'
-                                                }`}
-                                        >
-                                            <input
-                                                type="radio"
-                                                name="workType"
-                                                value={type}
-                                                checked={workTypePreference === type}
-                                                onChange={(e) => setWorkTypePreference(e.target.value)}
-                                                className="hidden"
-                                            />
-                                            {type}
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Project Preferences */}
-                            <div>
-                                <label className="block mb-3 text-base font-medium text-foreground">Project Preferences</label>
-                                <input
-                                    type="text"
-                                    value={projectPreferences}
-                                    onChange={(e) => setProjectPreferences(e.target.value)}
-                                    placeholder="e.g., product shoots, brand collaborations, reels"
-                                    className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-input border border-border text-foreground placeholder-muted-foreground"
-                                />
-                                <p className="text-xs mt-1 text-muted-foreground">Separate multiple preferences with commas</p>
-                            </div>
-
-                            {/* Save General Preferences Button */}
-                            <button
+                    <div className="rounded-xl p-4 sm:p-8 border border-border bg-card shadow-lg animate-fade-in">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
+                        <div>
+                          <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-1">Your General Work Preferences</h2>
+                          <p className="text-sm text-muted-foreground">Let us know your preferred days, times, and work types.</p>
+                        </div>
+                      </div>
+                      <form className="space-y-6">
+                        {/* Available Days */}
+                        <div>
+                          <label className="block mb-3 text-base font-medium text-foreground">Available Days</label>
+                          <div className="grid grid-cols-3 sm:grid-cols-7 gap-2">
+                            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
+                              <button
+                                key={day}
                                 type="button"
-                                onClick={handleSaveGeneralPreferences}
-                                className="w-full border border-primary text-primary bg-transparent hover:bg-primary/10 transition-all py-3 rounded-lg font-semibold focus:outline-none focus:ring-2 focus:ring-primary/30"
-                            >
-                                Save General Preferences
-                            </button>
-                        </form>
+                                onClick={() => handleDayToggle(day)}
+                                className={`py-2 rounded-lg border text-sm font-medium transition-all duration-200 ${availableDays.includes(day)
+                                    ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg border-primary'
+                                    : 'bg-background hover:bg-accent text-foreground border-border'
+                                  }`}
+                              >
+                                {day}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Preferred Time Slots */}
+                        <div>
+                          <label className="block mb-3 text-base font-medium text-foreground">Preferred Time Slots</label>
+                          <select
+                            value={preferredTimeSlot}
+                            onChange={(e) => setPreferredTimeSlot(e.target.value)}
+                            className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring appearance-none custom-select bg-input border border-border text-foreground"
+                          >
+                            <option value="" disabled className="bg-background text-muted-foreground">Select time slot</option>
+                            <option value="morning" className="bg-background text-foreground">Morning (9am - 12pm)</option>
+                            <option value="afternoon" className="bg-background text-foreground">Afternoon (12pm - 4pm)</option>
+                            <option value="evening" className="bg-background text-foreground">Evening (4pm - 8pm)</option>
+                            <option value="night" className="bg-background text-foreground">Night (8pm - 11pm)</option>
+                          </select>
+                          <style jsx>{`
+                            .custom-select {
+                              background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%234b5563' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+                              background-repeat: no-repeat;
+                              background-position: right 0.75rem center;
+                              background-size: 0.8rem 0.8rem;
+                            }
+                            html.dark .custom-select {
+                              background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+                            }
+                          `}</style>
+                        </div>
+
+                        {/* Work Type Preference */}
+                        <div>
+                          <label className="block mb-3 text-base font-medium text-foreground">Work Type</label>
+                          <div className="flex flex-wrap gap-4">
+                            {['Remote', 'In-Person', 'Hybrid'].map((type) => (
+                              <label
+                                key={type}
+                                className={`px-5 py-2 border rounded-lg cursor-pointer transition-all duration-200 ${workTypePreference === type
+                                    ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg border-primary'
+                                    : 'bg-muted hover:bg-accent text-foreground border-border'
+                                  }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="workType"
+                                  value={type}
+                                  checked={workTypePreference === type}
+                                  onChange={(e) => setWorkTypePreference(e.target.value)}
+                                  className="hidden"
+                                />
+                                {type}
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Project Preferences */}
+                        <div>
+                          <label className="block mb-3 text-base font-medium text-foreground">Project Preferences</label>
+                          <input
+                            type="text"
+                            value={projectPreferences}
+                            onChange={(e) => setProjectPreferences(e.target.value)}
+                            placeholder="e.g., product shoots, brand collaborations, reels"
+                            className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-input border border-border text-foreground placeholder-muted-foreground"
+                          />
+                          <p className="text-xs mt-1 text-muted-foreground">Separate multiple preferences with commas</p>
+                        </div>
+                        {/* Save General Preferences Button */}
+                        <div className="flex justify-end">
+                          <button
+                            type="button"
+                            onClick={handleSaveGeneralPreferences}
+                            className="px-6 py-3 border border-primary text-primary bg-transparent hover:bg-primary/10 transition-all rounded-md font-semibold focus:outline-none focus:ring-2 focus:ring-primary/30"
+                          >
+                            Save General Preferences
+                          </button>
+                        </div>
+                      </form>
                     </div>
                 )}
 
                 {/* --- Tab Content: Detailed Availability --- */}
                 {activeTab === 'detailed' && (
-                    <div className="rounded-xl p-4 sm:p-6 border border-border bg-card shadow-lg animate-fade-in">
-                        <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-4">Detailed Availability (Specific Dates)</h2>
-
-                        {/* Date Selector */}
-                        <div className="mb-6">
-                            <label className="block mb-2 text-base font-medium text-foreground">
-                                Select a Date to View/Edit Availability:
-                            </label>
-                            <input
-                                type="date"
-                                value={formatDate(selectedDate)}
-                                onChange={(e) => setSelectedDate(new Date(e.target.value))}
-                                className="w-full max-w-xs px-4 py-2 rounded-lg border border-border bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                            />
+                    <div className="rounded-xl p-4 sm:p-8 border border-border bg-card shadow-lg animate-fade-in">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
+                        <div>
+                          <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-1">Detailed Availability</h2>
+                          <p className="text-sm text-muted-foreground">Set your availability for specific dates and recurring patterns.</p>
                         </div>
+                        <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center">
+                          <label className="block text-base font-medium text-foreground mb-1 sm:mb-0">Select a Date:</label>
+                          <input
+                            type="date"
+                            value={formatDate(selectedDate)}
+                            onChange={(e) => setSelectedDate(new Date(e.target.value))}
+                            className="w-full sm:w-auto px-4 py-2 rounded-md border border-border bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                          />
+                        </div>
+                      </div>
 
-                        {/* Availability List for Selected Date */}
-                        <div className="p-4 sm:p-6 rounded-lg shadow-inner bg-muted border border-border dark:backdrop-blur-lg">
-                            <h3 className="text-lg sm:text-xl font-semibold mb-4 pb-2 border-b text-card-foreground border-border">
-                                Availability for {selectedDate.toDateString()}
-                            </h3>
-                            {preferencesForSelectedDate.length === 0 ? (
-                                <p className="text-center py-6 border border-dashed rounded-md mb-6 text-muted-foreground border-border">
-                                    No detailed preferences set for this day. Click "Add New" to set one.
-                                </p>
-                            ) : (
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                                    {preferencesForSelectedDate.map(pref => (
-                                        <div
-                                            key={pref.id}
-                                            className="rounded-lg p-4 shadow-sm flex flex-col justify-between bg-background border border-border"
-                                        >
-                                            <div>
-                                                <p className={`text-sm font-semibold mb-1 ${pref.type === 'unavailable' ? 'text-destructive' : 'text-primary'}`}>
-                                                    {pref.type === 'unavailable' ? 'Unavailable' : 'Preferred'}
-                                                </p>
-                                                <p className="text-lg font-bold text-foreground">
-                                                    {pref.allDay ? 'All Day' : `${pref.startTime} - ${pref.endTime}`}
-                                                </p>
-                                                {pref.repeating && (
-                                                    <p className="text-sm text-muted-foreground mt-1">
-                                                        Repeats: {pref.repeatFrequency === 'day' ? 'Every Day' : `Every ${pref.repeatFrequency === 'week' ? 'Week' : '2 Weeks'}`}
-                                                        {pref.repeatDays && pref.repeatDays.length > 0 && ` on ${pref.repeatDays.map(d => d.substring(0, 3)).join(', ')}`}
-                                                        {pref.endsOn && ` until ${new Date(pref.endsOn).toDateString()}`}
-                                                    </p>
-                                                )}
-                                                {pref.note && (
-                                                    <p className="text-sm text-muted-foreground mt-2 italic">
-                                                        Note: {pref.note}
-                                                    </p>
-                                                )}
-                                            </div>
-                                            <div className="mt-4 text-right">
-                                                <button
-                                                    onClick={() => handleEditPreference(pref)}
-                                                    className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md text-sm hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-opacity-50"
-                                                >
-                                                    Edit
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ))}
+                      <div className="p-4 sm:p-6 rounded-lg shadow-inner bg-muted border border-border dark:backdrop-blur-lg">
+                        <h3 className="text-lg sm:text-xl font-semibold mb-4 pb-2 border-b text-card-foreground border-border">
+                          Availability for {selectedDate.toDateString()}
+                        </h3>
+                        {preferencesForSelectedDate.length === 0 ? (
+                          <p className="text-center py-6 border border-dashed rounded-md mb-6 text-muted-foreground border-border">
+                            No detailed preferences set for this day. Click "Add New" to set one.
+                          </p>
+                        ) : (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            {preferencesForSelectedDate.map(pref => (
+                              <div
+                                key={pref.id}
+                                className="rounded-lg p-4 shadow-sm flex flex-col justify-between bg-background border border-border"
+                              >
+                                <div>
+                                  <div className={`text-lg font-bold mb-2 ${pref.type === 'unavailable' ? 'text-destructive' : 'text-primary'}`}>
+                                    {pref.type === 'unavailable' ? 'Unavailable' : 'Preferred'}
+                                  </div>
+                                  {pref.allDay ? (
+                                    <p className="text-sm text-muted-foreground mb-1">All Day</p>
+                                  ) : (
+                                    <p className="text-sm text-muted-foreground mb-1">
+                                      {pref.startTime} - {pref.endTime}
+                                    </p>
+                                  )}
+                                  {pref.repeating && (
+                                    <p className="text-xs text-muted-foreground mb-1">
+                                      Repeats: {pref.repeatFrequency === 'day' ? 'Every Day' : `Every ${pref.repeatFrequency === 'week' ? 'Week' : '2 Weeks'}`}
+                                      {pref.repeatFrequency !== 'day' && pref.repeatDays.length > 0 && ` on ${pref.repeatDays.map(d => d.substring(0, 3)).join(', ')}`}
+                                      {pref.endsOn && ` until ${new Date(pref.endsOn).toDateString()}`}
+                                    </p>
+                                  )}
+                                  {pref.note && (
+                                    <p className="text-sm italic text-muted-foreground">"{pref.note}"</p>
+                                  )}
                                 </div>
-                            )}
+                                <button
+                                  onClick={() => handleEditPreference(pref)}
+                                  className="mt-4 px-4 py-2 bg-secondary text-secondary-foreground rounded-md text-sm hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-opacity-50 self-end"
+                                >
+                                  Edit
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        )}
 
-                            {/* Action Buttons for Detailed Availability */}
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <button
-                                    onClick={handleAddPreference}
-                                    className="w-full sm:w-auto px-6 py-3 border border-primary text-primary bg-transparent hover:bg-primary/10 font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
-                                >
-                                    Add New Preference for {selectedDate.toDateString()}
-                                </button>
-                                <button
-                                    onClick={handleResetAllFuture}
-                                    className="w-full sm:w-auto px-6 py-3 border border-destructive text-destructive bg-transparent hover:bg-destructive/10 font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-destructive/30 transition"
-                                >
-                                    Reset All Future Detailed Availability
-                                </button>
-                            </div>
+                        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-6">
+                          <button
+                            onClick={handleAddPreference}
+                            className="w-full sm:w-auto px-6 py-3 border border-primary text-primary bg-transparent hover:bg-primary/10 font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
+                          >
+                            Add New Preference for {selectedDate.toDateString()}
+                          </button>
+                          <button
+                            onClick={handleResetAllFuture}
+                            className="inline-flex items-center gap-2 px-4 py-2 border border-destructive text-destructive bg-transparent hover:bg-destructive/10 font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-destructive/30 transition"
+                          >
+                            Reset All Future
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h1m4 4h-1v-4h1m-5 9h6a2 2 0 002-2v-6a2 2 0 00-2-2h-6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                            </svg>
+                          </button>
                         </div>
+                      </div>
                     </div>
                 )}
             </div>
 
-            {/* Availability Form Modal */}
+            {/* AvailabilityFormModal for adding/editing preferences */}
             <AvailabilityFormModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

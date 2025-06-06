@@ -82,7 +82,7 @@ export default function TalentProfileSetup() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-background text-foreground transition-colors duration-300 relative">
       <div className="absolute top-4 right-4 z-10"></div>
-      <div className="bg-card border border-border rounded-xl p-6 w-full max-w-xl shadow-2xl space-y-5 transition-colors duration-300 dark:backdrop-blur-lg">
+      <div className="bg-card border border-border rounded-xl p-6 w-full max-w-3xl mx-auto px-4 py-8 shadow-2xl space-y-5 transition-colors duration-300 dark:backdrop-blur-lg">
         <h1 className="text-2xl font-bold mb-6 text-center">Profile Setup</h1>
         <div className="flex justify-center">
           <div className="relative w-24 h-24">
