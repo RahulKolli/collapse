@@ -95,7 +95,7 @@ export default function CampaignAnalyticsDashboard() {
         {/* Header */}
         <header className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-            <h1 className="text-2xl font-bold mb-6">Project Overview</h1>
+            <h1 className="text-2xl font-bold">Project Overview</h1>
             <span className="text-muted-foreground text-sm sm:text-lg">({new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })})</span>
           </div>
           <div className="flex items-center gap-4 mt-2 sm:mt-0">

@@ -99,6 +99,8 @@ export default function TalentPortfolioPage() {
       </div>
 
       <div className="max-w-6xl mx-auto">
+        {/* Portfolio Heading */}
+        <h1 className="text-2xl font-bold mb-8">Portfolio</h1>
         {/* Header */}
         <header className="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-center gap-4">
@@ -106,14 +108,14 @@ export default function TalentPortfolioPage() {
             <Image
               src={talent.profileImage}
               alt={talent.name}
-              width={80} // Explicit width
-              height={80} // Explicit height
-              className="rounded-full object-cover border-2 border-border" // Uses Shadcn border color
-              unoptimized // Consider removing if you configure image domains in next.config.js
+              width={80}
+              height={80}
+              className="rounded-full object-cover border-2 border-border"
+              unoptimized
             />
             <div>
-              <h1 className="text-3xl font-bold">{talent.name}</h1>
-              <p className="text-muted-foreground">{talent.location}</p> {/* Uses Shadcn muted-foreground */}
+              <h1 className="text-xl font-bold">{talent.name}</h1>
+              <p className="text-muted-foreground">{talent.location}</p>
             </div>
           </div>
 
