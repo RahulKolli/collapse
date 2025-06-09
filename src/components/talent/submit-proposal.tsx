@@ -78,8 +78,11 @@ export default function MyForm() {
   const form = useForm < z.infer < typeof formSchema >> ({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      "name_0221175184": new Date(),
-      "name_4801478992": new Date()
+      name_4923708719: '',
+      name_3319250002: 1000,
+      name_0221175184: new Date('2025-06-09T00:00:00.000Z'),
+      name_4801478992: new Date('2025-06-09T00:00:00.000Z'),
+      name_7474687923: '',
     },
   })
 

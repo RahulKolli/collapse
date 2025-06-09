@@ -182,6 +182,7 @@ const SubmitTalentReviewForm = ({ clients, projects, onSubmit }) => {
     const [title, setTitle] = useState('');
     const [reviewText, setReviewText] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    // Ensure all state is initialized with primitives for hydration safety
 
     // Filter projects based on selected client
     const clientProjects = useMemo(() => {

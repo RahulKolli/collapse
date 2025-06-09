@@ -65,7 +65,11 @@ export default function disputeform() {
   };
   const form = useForm < z.infer < typeof formSchema >> ({
     resolver: zodResolver(formSchema),
-
+    defaultValues: {
+      reason: '',
+      name_0994130846: '',
+      name_0249317447: '',
+    },
   })
 
   function onSubmit(values: z.infer < typeof formSchema > ) {
@@ -91,17 +95,20 @@ export default function disputeform() {
           name="reason"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Raise dispute</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <FormLabel>Raise a dispute</FormLabel>
+              <Select onValueChange={field.onChange} value={field.value || ''} defaultValue={undefined}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a reason" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
+                  <SelectItem value="content_not_posted">Content Not Posted as Agreed</SelectItem>
+                  <SelectItem value="payment_issue">Payment Not Received</SelectItem>
+                  <SelectItem value="brand_asset_misuse">Misuse of Brand Assets</SelectItem>
+                  <SelectItem value="fake_metrics">Inflated/Fake Engagement Metrics</SelectItem>
+                  <SelectItem value="contract_breach">Breach of Contract Terms</SelectItem>
+                  <SelectItem value="delayed_posting">Posting Delayed Beyond Campaign Timeline</SelectItem>
                 </SelectContent>
               </Select>
                 

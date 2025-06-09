@@ -53,7 +53,13 @@ export default function TalentProfileSetup() {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name: '',
+      bio: '',
+      category: '',
+      city: '',
       skills: ['React'],
+      email: '',
+      phone: '',
     },
   });
 
@@ -174,7 +180,11 @@ export default function TalentProfileSetup() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Categories</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value || ''} // Ensure value is always a string for hydration
+                        defaultValue={undefined} // Remove defaultValue to avoid mismatch
+                      >
                         <FormControl>
                           <SelectTrigger className="min-w-[200px]">
                             <SelectValue placeholder="Select a category" />
