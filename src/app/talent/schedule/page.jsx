@@ -12,7 +12,8 @@ export default function MeetingScheduling() {
 
   // Initialize date and time on the client side to avoid hydration mismatches
   useEffect(() => {
-    if (selectedDate === '' && selectedTime === '') {
+    // Only update if the values are still the deterministic defaults
+    if (selectedDate === '2025-06-09' && selectedTime === '09:00') {
       const today = new Date();
       const year = today.getFullYear();
       const month = (today.getMonth() + 1).toString().padStart(2, '0');

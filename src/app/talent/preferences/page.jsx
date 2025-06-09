@@ -284,10 +284,12 @@ export default function WorkPreferences() {
         // Ensure deterministic date for hydration: use string, not Date object
         if (typeof window !== 'undefined') {
           // On client, use today
-          return new Date();
+          const today = new Date();
+          today.setHours(0,0,0,0);
+          return today;
         }
         // On server, use a fixed date string (ISO format)
-        return new Date('2025-06-06T00:00:00.000Z');
+        return new Date('2025-06-09T00:00:00.000Z');
       });
     const [availabilityData, setAvailabilityData] = useState({
         '2025-06-01': [{ id: '1', type: 'unavailable', startTime: '09:00', endTime: '17:00', note: 'Doctor appointment' }],

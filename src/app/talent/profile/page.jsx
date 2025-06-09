@@ -182,8 +182,8 @@ export default function TalentProfileSetup() {
                       <FormLabel>Categories</FormLabel>
                       <Select
                         onValueChange={field.onChange}
-                        value={field.value || ''} // Ensure value is always a string for hydration
-                        defaultValue={undefined} // Remove defaultValue to avoid mismatch
+                        value={typeof field.value === 'string' ? field.value : ''}
+                        defaultValue={undefined} // Remove defaultValue to avoid hydration mismatch
                       >
                         <FormControl>
                           <SelectTrigger className="min-w-[200px]">
@@ -241,7 +241,7 @@ export default function TalentProfileSetup() {
                 <FormItem>
                   <FormLabel>City</FormLabel>
                   <FormControl>
-                    <Input placeholder="Hyderabad, Mumbai, Delhi..." {...field} />
+                    <Input placeholder="Hyderabad, Mumbai, Delhi..." value={typeof field.value === 'string' ? field.value : ''} onChange={field.onChange} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
