@@ -24,28 +24,25 @@ export default function ReceivedProposals() {
 
   return (
     <div className="max-w-5xl mx-auto p-6">
-      <h1 className="text-2xl font-semibold text-gray-800 mb-6">Received Proposals</h1>
-
+      <h1 className="text-2xl font-bold mb-8">Received Proposals</h1>
       <div className="space-y-6">
         {proposals.map((proposal) => (
-          <div key={proposal.id} className="p-5 bg-white shadow-md rounded-xl">
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-3">
+          <div key={proposal.id} className="p-6 bg-card border border-border rounded-xl">
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4">
               <div>
-                <h2 className="text-lg font-medium text-gray-800">{proposal.name}</h2>
-                <p className="text-sm text-gray-600">{proposal.role} from {proposal.city}</p>
+                <h2 className="text-lg font-semibold text-foreground">{proposal.name}</h2>
+                <p className="text-sm text-muted-foreground">{proposal.role} from {proposal.city}</p>
               </div>
-              <div className="text-sm text-gray-700 mt-3 md:mt-0">
-                <p><span className="font-medium">Bid:</span> {proposal.bidAmount}</p>
+              <div className="text-sm text-muted-foreground md:text-right">
+                <p><span className="font-medium">Bid:</span> <span className="text-primary font-semibold">{proposal.bidAmount}</span></p>
                 <p><span className="font-medium">Submitted:</span> {proposal.submittedOn}</p>
               </div>
             </div>
-
-            <p className="text-gray-700 text-sm mb-4">{proposal.coverLetter}</p>
-
-            <div className="flex gap-3">
-              <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">View Full Proposal</button>
-              <button className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Accept</button>
-              <button className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400">Reject</button>
+            <p className="text-foreground/90 text-sm mb-5">{proposal.coverLetter}</p>
+            <div className="flex flex-wrap gap-3">
+              <button className="px-5 py-2 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition">View Full Proposal</button>
+              <button className="px-5 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition">Accept</button>
+              <button className="px-5 py-2 bg-muted text-foreground rounded-lg font-semibold hover:bg-muted/80 transition">Reject</button>
             </div>
           </div>
         ))}

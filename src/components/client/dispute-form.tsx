@@ -91,17 +91,20 @@ export default function disputeform() {
           name="reason"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Raise dispute</FormLabel>
+              <FormLabel>Dispute Type</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a reason" />
+                    <SelectValue placeholder="Select a dispute type" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
+                  <SelectItem value="not-delivered">Content not delivered</SelectItem>
+                  <SelectItem value="quality">Content quality/format issue</SelectItem>
+                  <SelectItem value="delay">Missed deadline/delayed campaign</SelectItem>
+                  <SelectItem value="payment">Payment/compensation issue</SelectItem>
+                  <SelectItem value="misuse">Misuse of brand assets</SelectItem>
+                  <SelectItem value="other">Other breach of contract</SelectItem>
                 </SelectContent>
               </Select>
                 

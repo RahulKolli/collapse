@@ -2,34 +2,24 @@
 
 export default function AcceptAndBookTalent() {
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white dark:bg-zinc-900 rounded-2xl shadow-md dark:shadow-none">
-      <h1 className="text-2xl font-semibold mb-4 text-zinc-800 dark:text-zinc-100">
-        Accept & Book Talent
-      </h1>
+    <div className="max-w-4xl mx-auto p-6 bg-background rounded-2xl">
+      <h1 className="text-2xl font-bold mb-6">Accept & Book Talent</h1>
 
-      <div className="mb-6 border rounded-xl p-4 bg-gray-50 dark:bg-zinc-800 dark:border-zinc-700">
-        <h2 className="text-lg font-medium mb-2 text-zinc-800 dark:text-zinc-100">Proposal Summary</h2>
-        <p className="text-zinc-700 dark:text-zinc-300">
-          <strong className="text-zinc-800 dark:text-zinc-200">Talent:</strong> Rama Krishna
-        </p>
-        <p className="text-zinc-700 dark:text-zinc-300">
-          <strong className="text-zinc-800 dark:text-zinc-200">Project:</strong> Social Media Campaign
-        </p>
-        <p className="text-zinc-700 dark:text-zinc-300">
-          <strong className="text-zinc-800 dark:text-zinc-200">Price:</strong> ₹50,000
-        </p>
-        <p className="text-zinc-700 dark:text-zinc-300">
-          <strong className="text-zinc-800 dark:text-zinc-200">Timeline:</strong> 3 weeks
-        </p>
-        <p className="text-zinc-700 dark:text-zinc-300">
-          <strong className="text-zinc-800 dark:text-zinc-200">Deliverables:</strong> 5 Reels, 1 Carousel, 1 Story Pack
-        </p>
+      <div className="mb-8 border border-border rounded-xl p-6 bg-muted/60">
+        <h2 className="text-lg font-semibold mb-3 text-foreground">Proposal Summary</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+          <div><span className="font-medium text-muted-foreground">Talent:</span> <span className="text-foreground">Rama Krishna</span></div>
+          <div><span className="font-medium text-muted-foreground">Project:</span> <span className="text-foreground">Social Media Campaign</span></div>
+          <div><span className="font-medium text-muted-foreground">Price:</span> <span className="text-primary font-semibold">₹50,000</span></div>
+          <div><span className="font-medium text-muted-foreground">Timeline:</span> <span className="text-foreground">3 weeks</span></div>
+          <div className="sm:col-span-2"><span className="font-medium text-muted-foreground">Deliverables:</span> <span className="text-foreground">5 Reels, 1 Carousel, 1 Story Pack</span></div>
+        </div>
       </div>
 
-      <form className="space-y-4">
+      <form className="space-y-6">
         <div>
-          <label className="block mb-1 font-medium text-zinc-700 dark:text-zinc-200">Payment Mode</label>
-          <select className="w-full border p-2 rounded-md bg-white dark:bg-zinc-800 dark:text-zinc-100 dark:border-zinc-600">
+          <label className="block mb-1 font-medium text-foreground">Payment Mode</label>
+          <select className="w-full border border-border p-3 rounded-lg bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition">
             <option>Escrow</option>
             <option>Upfront</option>
             <option>50-50 Split</option>
@@ -37,9 +27,9 @@ export default function AcceptAndBookTalent() {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium text-zinc-700 dark:text-zinc-200">Confirm Booking Terms</label>
+          <label className="block mb-1 font-medium text-foreground">Confirm Booking Terms</label>
           <textarea
-            className="w-full p-2 border rounded-md bg-white dark:bg-zinc-800 dark:text-zinc-100 dark:border-zinc-600"
+            className="w-full p-3 border border-border rounded-lg bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition"
             rows={3}
             placeholder="Add any special instructions or terms..."
           ></textarea>
@@ -47,7 +37,7 @@ export default function AcceptAndBookTalent() {
 
         <button
           type="submit"
-          className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md transition-colors"
+          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-lg font-semibold text-lg tracking-wide transition"
         >
           Accept & Book Talent
         </button>

@@ -45,16 +45,16 @@ export default function PostedProjectsList() {
     <div className="max-w-5xl mx-auto p-6">
       <h2 className="text-2xl font-semibold mb-4 text-foreground">Posted Projects</h2>
 
-      <div className="grid grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 gap-5">
         {dummyProjects.map((project) => (
           <div
             key={project.id}
-            className="bg-card border border-border rounded-xl p-5 shadow-sm hover:shadow-md transition"
+            className="bg-card border border-border rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-md transition flex flex-col gap-2"
           >
-            <div className="flex justify-between items-center mb-2">
-              <h3 className="text-xl font-medium text-foreground">{project.title}</h3>
+            <div className="flex flex-col gap-1 xs:flex-row xs:justify-between xs:items-center mb-1">
+              <h3 className="text-lg sm:text-xl font-semibold text-foreground break-words">{project.title}</h3>
               <span
-                className={`text-sm px-3 py-1 rounded-full font-medium ${
+                className={`mt-1 xs:mt-0 text-xs px-3 py-1 rounded-full font-medium ${
                   project.status === "Open"
                     ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200"
                     : project.status === "In Progress"
@@ -66,36 +66,25 @@ export default function PostedProjectsList() {
               </span>
             </div>
 
-            <p className="text-sm text-muted-foreground">
-              {project.category} • {project.location}
-            </p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Budget: {project.minBudget} – {project.maxBudget}
-            </p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Timeline: {project.timeline}
-            </p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Proposals Received: {project.proposals}
-            </p>
-            <p className="text-sm text-muted-foreground mt-1">
-              {project.selectedTalent
-                ? `Selected Talent: ${project.selectedTalent}`
-                : "Talent Not Yet Selected"}
-            </p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Posted on: {project.postedDate}
-            </p>
+            <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-1 text-sm text-muted-foreground">
+              <span>{project.category}</span>
+              <span>{project.location}</span>
+              <span>Budget: {project.minBudget} – {project.maxBudget}</span>
+              <span>Timeline: {project.timeline}</span>
+              <span>Proposals: {project.proposals}</span>
+              <span>{project.selectedTalent ? `Talent: ${project.selectedTalent}` : "Talent Not Yet Selected"}</span>
+              <span>Posted: {project.postedDate}</span>
+            </div>
 
-            <div className="text-right mt-4 flex gap-2 justify-end flex-wrap">
-              <button className="text-sm bg-primary text-primary-foreground px-4 py-2 rounded-xl hover:bg-primary/90 transition">
+            <div className="flex flex-col gap-2 sm:flex-row sm:gap-2 justify-end items-stretch sm:items-center text-right mt-2 flex-wrap">
+              <button className="text-sm bg-primary text-primary-foreground px-4 py-2 rounded-xl hover:bg-primary/90 transition w-full sm:w-auto">
                 View Details
               </button>
-              <button className="text-sm border border-gray-300 px-4 py-2 rounded-xl hover:bg-gray-100 transition">
+              <button className="text-sm border border-border px-4 py-2 rounded-xl hover:bg-muted transition w-full sm:w-auto">
                 View Proposals
               </button>
               {project.status === "In Progress" && (
-                <button className="text-sm bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition">
+                <button className="text-sm bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition w-full sm:w-auto">
                   Mark as Completed
                 </button>
               )}

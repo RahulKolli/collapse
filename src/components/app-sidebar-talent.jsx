@@ -101,7 +101,7 @@ const data = {
     {
       title: "Settings",
       url: "#",
-      icon: () => <IconSettings title="Settings" />,
+      icon: () => <IconSettings title="Settings" />, 
     },
     {
       title: "Get Help",
