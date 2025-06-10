@@ -14,6 +14,12 @@ import {
   IconSearch,
   IconSettings,
   IconUsers,
+  IconCalendarEvent,
+  IconBriefcase,
+  IconUserCheck,
+  IconWallet,
+  IconId,
+  IconClipboardText,
 } from "@tabler/icons-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -33,81 +39,79 @@ const data = {
   user: {
     name: "Talent",
     email: "m@example.com",
-
   },
   navMain: [
-  {
-    title: "Dashboard",
-    url: "dashboard",
-    icon: IconDashboard,
-  },
-  {
-    title: "KYC Upload",
-    url: "/talent/kyc-upload",
-    icon: IconUsers,
-  },
-  {
-    title: "Profile",
-    url: "/talent/profile",
-    icon: IconListDetails,
-  },
-  {
-    title: "Portfolio",
-    url: "/talent/portfolio",
-    icon: IconUsers,
-  },
-  {
-    title: "Profile Availibility",
-    url: "/talent/preferences",
-    icon: IconChartBar,
-  },
-  {
-    title: "Browse Projects",
-    url: "/talent/browse-projects",
-    icon: IconUsers,
-  },
-
-  {
-    title: "Submit Proposal",
-    url: "/talent/submit-proposal",
-    icon: IconUsers,
-  },
-  {
-    title: "Proposal Status",
-    url: "/talent/proposals-status",
-    icon: IconFolder,
-  },
-  {
-    title: "Meeting Scheduling",
-    url: "/talent/schedule",
-    icon: IconUsers,
-  },
     {
-    title: "Project Overview",
-    url: "/talent/project-overview",
-    icon: IconUsers,
-  },
-  {
-    title: "Earnings",
-    url: "/talent/earnings",
-    icon: IconUsers,
-  },
-],
+      title: "Dashboard",
+      url: "dashboard",
+      icon: () => <IconDashboard title="Dashboard" />,
+    },
+    {
+      title: "KYC Upload",
+      url: "/talent/kyc-upload",
+      icon: () => <IconId title="KYC Upload" />,
+    },
+    {
+      title: "Profile",
+      url: "/talent/profile",
+      icon: () => <IconListDetails title="Profile" />,
+    },
+    {
+      title: "Portfolio",
+      url: "/talent/portfolio",
+      icon: () => <IconCamera title="Portfolio" />,
+    },
+    {
+      title: "Profile Availibility",
+      url: "/talent/preferences",
+      icon: () => <IconUserCheck title="Profile Availibility" />,
+    },
+    {
+      title: "Browse Projects",
+      url: "/talent/browse-projects",
+      icon: () => <IconBriefcase title="Browse Projects" />,
+    },
+    {
+      title: "Submit Proposal",
+      url: "/talent/submit-proposal",
+      icon: () => <IconClipboardText title="Submit Proposal" />,
+    },
+    {
+      title: "Proposal Status",
+      url: "/talent/proposals-status",
+      icon: () => <IconFolder title="Proposal Status" />,
+    },
+    {
+      title: "Meeting Scheduling",
+      url: "/talent/schedule",
+      icon: () => <IconCalendarEvent title="Meeting Scheduling" />,
+    },
+    {
+      title: "Project Overview",
+      url: "/talent/project-overview",
+      icon: () => <IconFileDescription title="Project Overview" />,
+    },
+    {
+      title: "Earnings",
+      url: "/talent/earnings",
+      icon: () => <IconWallet title="Earnings" />,
+    },
+  ],
   navSecondary: [
     {
       title: "Settings",
       url: "#",
-      icon: IconSettings,
+      icon: () => <IconSettings title="Settings" />,
     },
     {
       title: "Get Help",
       url: "#",
-      icon: IconHelp,
+      icon: () => <IconHelp title="Get Help" />,
     },
     {
       title: "Search",
       url: "#",
-      icon: IconSearch,
+      icon: () => <IconSearch title="Search" />,
     },
   ],
 };
@@ -123,8 +127,8 @@ export function AppSidebartalent({ ...props }) {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Talent </span>
+                <IconInnerShadowTop className="!size-5" title="Talent Home" />
+                <span className="text-base font-semibold">Talent</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -132,7 +136,6 @@ export function AppSidebartalent({ ...props }) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        {/* Removed NavDocuments */}
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>

@@ -75,13 +75,16 @@ export default function MyForm() {
     maxSize: 1024 * 1024 * 4,
     multiple: true,
   };
+  const today = new Date();
+const defaultDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
   const form = useForm < z.infer < typeof formSchema >> ({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name_4923708719: '',
       name_3319250002: 1000,
-      name_0221175184: new Date('2025-06-09T00:00:00.000Z'),
-      name_4801478992: new Date('2025-06-09T00:00:00.000Z'),
+      name_0221175184: defaultDate,
+      name_4801478992: defaultDate,
       name_7474687923: '',
     },
   })
@@ -126,22 +129,22 @@ export default function MyForm() {
               control={form.control}
               name="name_3319250002"
               render={({ field: { value, onChange } }) => (
-              <FormItem className="">
-                <FormLabel className="">Price - {value}</FormLabel>
-                <FormControl>
-                  <Slider
-                    min={1000}
-                    max={50000}
-                    step={1000}
-                    defaultValue={[5]}
-                    onValueChange={(vals) => {
-                      onChange(vals[0]);
-                    }}
-                  />
-                </FormControl>
-                <FormDescription className="">Adjust the price by sliding.</FormDescription>
-                <FormMessage className="" />
-              </FormItem>
+                <FormItem className="">
+                  <FormLabel className="">Price - {value}</FormLabel>
+                  <FormControl>
+                    <Slider
+                      min={1000}
+                      max={50000}
+                      step={1000}
+                      value={[value]}
+                      onValueChange={(vals) => {
+                        onChange(vals[0]);
+                      }}
+                    />
+                  </FormControl>
+                  <FormDescription className="">Adjust the price by sliding.</FormDescription>
+                  <FormMessage className="" />
+                </FormItem>
               )}
             />
         
@@ -176,7 +179,7 @@ export default function MyForm() {
               </FormControl>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
-              <Calendar className="" classNames={{}} mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
+              <Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
             </PopoverContent>
           </Popover>
           <FormMessage className="" />
@@ -214,7 +217,7 @@ export default function MyForm() {
               </FormControl>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
-              <Calendar className="" classNames={{}} mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
+              <Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
             </PopoverContent>
           </Popover>
        
