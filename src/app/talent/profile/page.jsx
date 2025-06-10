@@ -53,7 +53,13 @@ export default function TalentProfileSetup() {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name: '',
+      bio: '',
+      category: '',
+      city: '',
       skills: ['React'],
+      email: '',
+      phone: '',
     },
   });
 
@@ -82,7 +88,7 @@ export default function TalentProfileSetup() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-background text-foreground transition-colors duration-300 relative">
       <div className="absolute top-4 right-4 z-10"></div>
-      <div className="bg-card border border-border rounded-xl p-6 w-full max-w-xl shadow-2xl space-y-5 transition-colors duration-300 dark:backdrop-blur-lg">
+      <div className="bg-card border border-border rounded-xl p-6 w-full max-w-3xl mx-auto px-4 py-8 shadow-2xl space-y-5 transition-colors duration-300 dark:backdrop-blur-lg">
         <h1 className="text-2xl font-bold mb-6 text-center">Profile Setup</h1>
         <div className="flex justify-center">
           <div className="relative w-24 h-24">
@@ -174,7 +180,11 @@ export default function TalentProfileSetup() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Categories</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={typeof field.value === 'string' ? field.value : ''}
+                        defaultValue={undefined} // Remove defaultValue to avoid hydration mismatch
+                      >
                         <FormControl>
                           <SelectTrigger className="min-w-[200px]">
                             <SelectValue placeholder="Select a category" />
@@ -231,7 +241,7 @@ export default function TalentProfileSetup() {
                 <FormItem>
                   <FormLabel>City</FormLabel>
                   <FormControl>
-                    <Input placeholder="Hyderabad, Mumbai, Delhi..." {...field} />
+                    <Input placeholder="Hyderabad, Mumbai, Delhi..." value={typeof field.value === 'string' ? field.value : ''} onChange={field.onChange} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

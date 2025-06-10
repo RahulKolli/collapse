@@ -62,7 +62,12 @@ export default function MyForm123() {
   };
   const form = useForm < z.infer < typeof formSchema >> ({
     resolver: zodResolver(formSchema),
-
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      file: '',
+    },
   })
 
   function onSubmit(values: z.infer < typeof formSchema > ) {

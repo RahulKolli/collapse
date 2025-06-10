@@ -6,22 +6,25 @@ import { useState, useEffect } from 'react';
 
 export default function MeetingScheduling() {
   const [meetingType, setMeetingType] = useState('call');
-  const [selectedDate, setSelectedDate] = useState('');
-  const [selectedTime, setSelectedTime] = useState('');
+  const [selectedDate, setSelectedDate] = useState('2025-06-09'); // deterministic default for hydration
+  const [selectedTime, setSelectedTime] = useState('09:00'); // deterministic default for hydration
   const [meetingLocation, setMeetingLocation] = useState('');
 
   // Initialize date and time on the client side to avoid hydration mismatches
   useEffect(() => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0');
-    const day = today.getDate().toString().padStart(2, '0');
-    setSelectedDate(`${year}-${month}-${day}`);
+    // Only update if the values are still the deterministic defaults
+    if (selectedDate === '2025-06-09' && selectedTime === '09:00') {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = (today.getMonth() + 1).toString().padStart(2, '0');
+      const day = today.getDate().toString().padStart(2, '0');
+      setSelectedDate(`${year}-${month}-${day}`);
 
-    const hours = today.getHours().toString().padStart(2, '0');
-    const minutes = today.getMinutes().toString().padStart(2, '0');
-    setSelectedTime(`${hours}:${minutes}`);
-  }, []); // Empty dependency array means this runs once on mount (client-side)
+      const hours = today.getHours().toString().padStart(2, '0');
+      const minutes = today.getMinutes().toString().padStart(2, '0');
+      setSelectedTime(`${hours}:${minutes}`);
+    }
+  }, []); // Only set if not already set, to avoid hydration mismatch
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission
