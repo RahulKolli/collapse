@@ -504,7 +504,7 @@ export default function WorkPreferences() {
                                   name="workType"
                                   value={type}
                                   checked={workTypePreference === type}
-                                  onChange={(e) => setWorkTypePreference(e.target.value)}
+                                  onChange={(e) => setWorkTypePreference(e.target.value || '')}
                                   className="hidden"
                                 />
                                 {type}
@@ -518,7 +518,7 @@ export default function WorkPreferences() {
                           <label className="block mb-3 text-base font-medium text-foreground">Project Preferences</label>
                           <input
                             type="text"
-                            value={projectPreferences}
+                            value={typeof projectPreferences === 'string' ? projectPreferences : ''}
                             onChange={(e) => setProjectPreferences(e.target.value)}
                             placeholder="e.g., product shoots, brand collaborations, reels"
                             className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-input border border-border text-foreground placeholder-muted-foreground"
