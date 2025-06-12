@@ -5,20 +5,18 @@ import FooterSection from "@/components/footer";
 
 import HeroSection from "@/components/hero-section";
 import Login from "@/components/login";
-import Signin from "@/components/sign-up-one"
+import Signin from "@/components/sign-up-one";
+
 
 export default function Home() {
   return (
     <>
       <HeroSection />
 
-      < Features />
-      < FeaturesSection />
-      < FooterSection />
-     
+      <Features />
+      <FeaturesSection />
       
-
-      
+      <FooterSection />
     </>
   );
-}       
+}
