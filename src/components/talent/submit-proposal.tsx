@@ -140,6 +140,8 @@ const defaultDate = new Date(today.getFullYear(), today.getMonth(), today.getDat
                       onValueChange={(vals) => {
                         onChange(vals[0]);
                       }}
+                      className="w-full"
+                      defaultValue={[1000]}
                     />
                   </FormControl>
                   <FormDescription className="">Adjust the price by sliding.</FormDescription>
@@ -179,7 +181,14 @@ const defaultDate = new Date(today.getFullYear(), today.getMonth(), today.getDat
               </FormControl>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
-              <Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
+              <Calendar
+                mode="single"
+                selected={field.value}
+                onSelect={field.onChange}
+                initialFocus
+                className="w-full"
+                classNames={{}} // <-- Added classNames prop here
+              />
             </PopoverContent>
           </Popover>
           <FormMessage className="" />
@@ -217,7 +226,14 @@ const defaultDate = new Date(today.getFullYear(), today.getMonth(), today.getDat
               </FormControl>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
-              <Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
+              <Calendar
+                mode="single"
+                selected={field.value}
+                onSelect={field.onChange}
+                initialFocus
+                className="w-full"
+                classNames={{}}
+              />
             </PopoverContent>
           </Popover>
        

@@ -54,7 +54,7 @@ const formSchema = z.object({
   name_0249317447: z.string()
 });
 
-export default function disputeform() {
+export default function TalentDisputeForm() {
 
   const [files, setFiles] = useState < File[] | null > (null);
 
@@ -89,99 +89,94 @@ export default function disputeform() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-3xl mx-auto py-10">
-        
         <FormField
           control={form.control}
           name="reason"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Raise a dispute</FormLabel>
-              <Select onValueChange={field.onChange} value={field.value || ''} defaultValue={undefined}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a reason" />
+            <FormItem className="">
+              <FormLabel className="">Raise a dispute</FormLabel>
+              <Select onValueChange={field.onChange} value={field.value || ''} defaultValue={undefined} className="">
+                <FormControl className="">
+                  <SelectTrigger className="">
+                    <SelectValue placeholder="Select a reason" className="" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
-                  <SelectItem value="content_not_posted">Content Not Posted as Agreed</SelectItem>
-                  <SelectItem value="payment_issue">Payment Not Received</SelectItem>
-                  <SelectItem value="brand_asset_misuse">Misuse of Brand Assets</SelectItem>
-                  <SelectItem value="fake_metrics">Inflated/Fake Engagement Metrics</SelectItem>
-                  <SelectItem value="contract_breach">Breach of Contract Terms</SelectItem>
-                  <SelectItem value="delayed_posting">Posting Delayed Beyond Campaign Timeline</SelectItem>
+                <SelectContent className="">
+                  <SelectItem className="" value="content_not_posted">Content Not Posted as Agreed</SelectItem>
+                  <SelectItem className="" value="payment_issue">Payment Not Received</SelectItem>
+                  <SelectItem className="" value="brand_asset_misuse">Misuse of Brand Assets</SelectItem>
+                  <SelectItem className="" value="fake_metrics">Inflated/Fake Engagement Metrics</SelectItem>
+                  <SelectItem className="" value="contract_breach">Breach of Contract Terms</SelectItem>
+                  <SelectItem className="" value="delayed_posting">Posting Delayed Beyond Campaign Timeline</SelectItem>
                 </SelectContent>
               </Select>
-                
-              <FormMessage />
+              <FormMessage className="" />
             </FormItem>
           )}
         />
-        
         <FormField
           control={form.control}
           name="name_0994130846"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Description</FormLabel>
-              <FormControl>
+            <FormItem className="">
+              <FormLabel className="">Description</FormLabel>
+              <FormControl className="">
                 <Textarea
                   placeholder="Explain in detail"
                   className="resize-none"
                   {...field}
                 />
               </FormControl>
-              
-              <FormMessage />
+              <FormMessage className="" />
             </FormItem>
           )}
         />
-        
-            <FormField
-              control={form.control}
-              name="name_0249317447"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Select File</FormLabel>
-                  <FormControl>
-                    <FileUploader
-                      value={files}
-                      onValueChange={setFiles}
-                      dropzoneOptions={dropZoneConfig}
-                      className="relative bg-background rounded-lg p-2"
-                    >
-                      <FileInput
-                        id="fileInput"
-                        className="outline-dashed outline-1 outline-slate-500"
-                      >
-                        <div className="flex items-center justify-center flex-col p-8 w-full ">
-                          <CloudUpload className='text-gray-500 w-10 h-10' />
-                          <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                            <span className="font-semibold">Click to upload</span>
-                            &nbsp; or drag and drop
-                          </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">
-                            SVG, PNG, JPG or GIF
-                          </p>
-                        </div>
-                      </FileInput>
-                      <FileUploaderContent>
-                        {files &&
-                          files.length > 0 &&
-                          files.map((file, i) => (
-                            <FileUploaderItem key={i} index={i}>
-                              <Paperclip className="h-4 w-4 stroke-current" />
-                              <span>{file.name}</span>
-                            </FileUploaderItem>
-                          ))}
-                      </FileUploaderContent>
-                    </FileUploader>
-                  </FormControl>
-                  <FormDescription>Select a file to upload.</FormDescription>
-                  <FormMessage />
-                </FormItem> 
-              )}
-            />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="name_0249317447"
+          render={({ field }) => (
+            <FormItem className="">
+              <FormLabel className="">Select File</FormLabel>
+              <FormControl className="">
+                <FileUploader
+                  value={files}
+                  onValueChange={setFiles}
+                  dropzoneOptions={dropZoneConfig}
+                  className="relative bg-background rounded-lg p-2"
+                >
+                  <FileInput
+                    id="fileInput"
+                    className="outline-dashed outline-1 outline-slate-500"
+                  >
+                    <div className="flex items-center justify-center flex-col p-8 w-full ">
+                      <CloudUpload className='text-gray-500 w-10 h-10' />
+                      <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
+                        <span className="font-semibold">Click to upload</span>
+                        &nbsp; or drag and drop
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        SVG, PNG, JPG or GIF
+                      </p>
+                    </div>
+                  </FileInput>
+                  <FileUploaderContent className="">
+                    {files &&
+                      files.length > 0 &&
+                      files.map((file, i) => (
+                        <FileUploaderItem className="" key={i} index={i}>
+                          <Paperclip className="h-4 w-4 stroke-current" />
+                          <span>{file.name}</span>
+                        </FileUploaderItem>
+                      ))}
+                  </FileUploaderContent>
+                </FileUploader>
+              </FormControl>
+              <FormDescription className="">Select a file to upload.</FormDescription>
+              <FormMessage className="" />
+            </FormItem>
+          )}
+        />
+        <Button className="" type="submit" variant="default" size="default">Submit</Button>
       </form>
     </Form>
   )

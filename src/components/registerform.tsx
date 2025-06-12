@@ -56,45 +56,41 @@ export default function MyForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-3xl mx-auto py-10">
-        
         <FormField
           control={form.control}
           name="name_4171387175"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Full Name</FormLabel>
-              <FormControl>
+            <FormItem className="">
+              <FormLabel className="">Full Name</FormLabel>
+              <FormControl className="">
                 <Input 
-                placeholder="Enter your name"
-                
-                type="text"
-                {...field} />
+                  placeholder="Enter your name"
+                  type="text"
+                  {...field} />
               </FormControl>
-              <FormDescription>Enter your name</FormDescription>
-              <FormMessage />
+              <FormDescription className="">Enter your name</FormDescription>
+              <FormMessage className="" />
             </FormItem>
           )}
         />
-        
         <FormField
           control={form.control}
           name="name_2062010259"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
+            <FormItem className="">
+              <FormLabel className="">Email</FormLabel>
+              <FormControl className="">
                 <Input 
-                placeholder="Enter your email"
-                
-                type="email"
-                {...field} />
+                  placeholder="Enter your email"
+                  type="email"
+                  {...field} />
               </FormControl>
-              <FormDescription>This is your public display name.</FormDescription>
-              <FormMessage />
+              <FormDescription className="">This is your public display name.</FormDescription>
+              <FormMessage className="" />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button className="" type="submit" variant="default" size="default">Submit</Button>
       </form>
     </Form>
   )

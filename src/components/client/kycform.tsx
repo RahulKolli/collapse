@@ -88,7 +88,6 @@ export default function MyForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-3xl mx-auto py-10 px-2 sm:px-4">
-        
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             {/* First Name */}
@@ -98,7 +97,7 @@ export default function MyForm() {
               render={({ field }) => (
                 <FormItem className="">
                   <FormLabel className="">First Name</FormLabel>
-                  <FormControl>
+                  <FormControl className="">
                     <Input 
                       placeholder="Surname"
                       type="text"
@@ -117,7 +116,7 @@ export default function MyForm() {
               render={({ field }) => (
                 <FormItem className="">
                   <FormLabel className="">Last Name</FormLabel>
-                  <FormControl>
+                  <FormControl className="">
                     <Input 
                       placeholder="Name"
                       type="text"
@@ -129,7 +128,6 @@ export default function MyForm() {
             />
           </div>
         </div>
-        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="md:col-span-1 w-full">
             {/* Document Type */}
@@ -139,16 +137,16 @@ export default function MyForm() {
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormLabel className="">Document Type</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
+                  <Select onValueChange={field.onChange} defaultValue={field.value} className="">
+                    <FormControl className="">
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Upload Government ID" />
+                        <SelectValue placeholder="Upload Government ID" className="" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
-                      <SelectItem value="aadhaar">Aadhaar</SelectItem>
-                      <SelectItem value="pan">PAN</SelectItem>
-                      <SelectItem value="driving">Driving Licence</SelectItem>
+                    <SelectContent className="">
+                      <SelectItem className="" value="aadhaar">Aadhaar</SelectItem>
+                      <SelectItem className="" value="pan">PAN</SelectItem>
+                      <SelectItem className="" value="driving">Driving Licence</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage className="" />
@@ -164,7 +162,7 @@ export default function MyForm() {
               render={({ field }) => (
                 <FormItem className="">
                   <FormLabel className="">Email</FormLabel>
-                  <FormControl>
+                  <FormControl className="">
                     <Input 
                       placeholder="Enter your email"
                       type="email"
@@ -183,7 +181,7 @@ export default function MyForm() {
               render={({ field }) => (
                 <FormItem className="">
                   <FormLabel className="">Phone</FormLabel>
-                  <FormControl>
+                  <FormControl className="">
                     <Input 
                       placeholder="Enter your phone number"
                       type=""
@@ -202,7 +200,7 @@ export default function MyForm() {
           render={({ field }) => (
             <FormItem className="">
               <FormLabel className="">Select File</FormLabel>
-              <FormControl>
+              <FormControl className="">
                 <FileUploader
                   value={files}
                   onValueChange={setFiles}
@@ -224,11 +222,11 @@ export default function MyForm() {
                       </p>
                     </div>
                   </FileInput>
-                  <FileUploaderContent>
+                  <FileUploaderContent className="">
                     {files &&
                       files.length > 0 &&
                       files.map((file, i) => (
-                        <FileUploaderItem key={i} index={i}>
+                        <FileUploaderItem className="" key={i} index={i}>
                           <Paperclip className="h-4 w-4 stroke-current" />
                           <span className="truncate max-w-[120px] sm:max-w-xs">{file.name}</span>
                         </FileUploaderItem>
@@ -236,12 +234,12 @@ export default function MyForm() {
                   </FileUploaderContent>
                 </FileUploader>
               </FormControl>
-              <FormDescription>Select a file to upload.</FormDescription>
+              <FormDescription className="">Select a file to upload.</FormDescription>
               <FormMessage className="" />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full sm:w-auto">Submit</Button>
+        <Button className="w-full sm:w-auto" type="submit" variant="default" size="default">Submit</Button>
       </form>
     </Form>
   )

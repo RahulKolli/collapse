@@ -56,49 +56,45 @@ export default function DisputeTable() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Disputes</CardTitle>
-        <CardDescription>
-          Manage your disputes and view their current status.
-        </CardDescription>
+    <Card className="">
+      <CardHeader className="">
+        <CardTitle className="">Disputes</CardTitle>
+        <CardDescription className="">Manage your disputes and view their current status.</CardDescription>
       </CardHeader>
-      <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Dispute Title</TableHead>
-              <TableHead>Status</TableHead>
+      <CardContent className="">
+        <Table className="">
+          <TableHeader className="">
+            <TableRow className="">
+              <TableHead className="">Dispute Title</TableHead>
+              <TableHead className="">Status</TableHead>
               <TableHead className="hidden md:table-cell">Amount</TableHead>
               <TableHead className="hidden md:table-cell">Date Filed</TableHead>
-              <TableHead>
+              <TableHead className="">
                 <span className="sr-only">Actions</span>
               </TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className="">
             {currentData.map(({ id, title, status, amount, date }) => (
-              <TableRow key={id}>
+              <TableRow key={id} className="">
                 <TableCell className="font-medium">{title}</TableCell>
-                <TableCell>
-                  <Badge variant={status === "Resolved" ? "secondary" : "outline"}>
-                    {status}
-                  </Badge>
+                <TableCell className="">
+                  <Badge className="" variant={status === "Resolved" ? "secondary" : "outline"}>{status}</Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">${amount}</TableCell>
                 <TableCell className="hidden md:table-cell">{date}</TableCell>
-                <TableCell>
+                <TableCell className="">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button aria-haspopup="true" size="icon" variant="ghost">
+                      <Button className="" aria-haspopup="true" size="icon" variant="ghost">
                         <MoreHorizontal className="h-4 w-4" />
                         <span className="sr-only">Toggle menu</span>
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
-                      <DropdownMenuItem>Delete</DropdownMenuItem>
+                    <DropdownMenuContent className="" align="end">
+                      <DropdownMenuLabel className="" inset={false}>Actions</DropdownMenuLabel>
+                      <DropdownMenuItem className="" inset={false}>Edit</DropdownMenuItem>
+                      <DropdownMenuItem className="" inset={false}>Delete</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </TableCell>
@@ -107,44 +103,20 @@ export default function DisputeTable() {
           </TableBody>
         </Table>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="">
         <div className="flex items-center justify-between w-full">
           <div className="text-xs text-muted-foreground">
             Showing <strong>{(page - 1) * ITEMS_PER_PAGE + 1}</strong> -{" "}
-            <strong>
-              {Math.min(page * ITEMS_PER_PAGE, disputesData.length)}
-            </strong>{" "}
+            <strong>{Math.min(page * ITEMS_PER_PAGE, disputesData.length)}</strong>{" "}
             of <strong>{disputesData.length}</strong> disputes
           </div>
-
           {/* Pagination controls */}
           <nav className="flex space-x-2">
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => goToPage(page - 1)}
-              disabled={page === 1}
-            >
-              Prev
-            </Button>
+            <Button className="" size="sm" variant="outline" onClick={() => goToPage(page - 1)} disabled={page === 1}>Prev</Button>
             {[...Array(pageCount)].map((_, i) => (
-              <Button
-                key={i}
-                size="sm"
-                variant={page === i + 1 ? "default" : "outline"}
-                onClick={() => goToPage(i + 1)}
-              >
-                {i + 1}
-              </Button>
+              <Button className="" key={i} size="sm" variant={page === i + 1 ? "default" : "outline"} onClick={() => goToPage(i + 1)}>{i + 1}</Button>
             ))}
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => goToPage(page + 1)}
-              disabled={page === pageCount}
-            >
-              Next
-            </Button>
+            <Button className="" size="sm" variant="outline" onClick={() => goToPage(page + 1)} disabled={page === pageCount}>Next</Button>
           </nav>
         </div>
       </CardFooter>

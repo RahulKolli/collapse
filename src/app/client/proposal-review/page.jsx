@@ -2,69 +2,7 @@
 
 // src/ProposalReviewPage.jsx (or whatever you want to name this single file)
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
-
-// --- ThemeProvider Component ---
-const ThemeContext = createContext(null);
-
-export function ThemeProvider({ children, defaultTheme = 'light', storageKey = 'vite-ui-theme' }) {
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem(storageKey);
-    if (savedTheme) {
-      return savedTheme;
-    }
-    if (defaultTheme === 'system' && window.matchMedia) {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    return defaultTheme;
-  });
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove('light', 'dark');
-
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      root.classList.add(systemTheme);
-    } else {
-      root.classList.add(theme);
-    }
-
-    localStorage.setItem(storageKey, theme);
-  }, [theme, storageKey]);
-
-  const value = {
-    theme,
-    setTheme: (newTheme) => {
-      setTheme(newTheme);
-    },
-  };
-
-  return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
-  );
-}
-
-export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-}
-
-// --- ModeToggle Component ---
-export function ModeToggle() {
-  const { theme, setTheme } = useTheme();
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
- 
-}
+import React from 'react';
 
 // --- ProposalReview Component ---
 export default function ProposalReviewPage() { // Renamed to avoid conflict if already an App.jsx
@@ -81,17 +19,14 @@ export default function ProposalReviewPage() { // Renamed to avoid conflict if a
   };
 
   return (
-    // Wrap the entire content with the ThemeProvider
-    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+    <>
       <div className="min-h-screen bg-background text-foreground flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
         {/* Theme Toggle Button positioned at the top right */}
         <div className="absolute top-4 right-4">
-          <ModeToggle />
+          {/* Remove ModeToggle or replace with a static button if needed */}
         </div>
-
         <div className="max-w-4xl mx-auto w-full">
           <h1 className="text-2xl font-bold mb-6 text-left">Proposal Review</h1>
-
           {/* Main proposal card */}
           <div className="bg-gradient-to-br from-card via-muted/60 to-background border border-border rounded-3xl p-0 overflow-hidden">
             {/* Top Bar */}
@@ -106,7 +41,6 @@ export default function ProposalReviewPage() { // Renamed to avoid conflict if a
                 <span><span className="font-semibold">Est. Time:</span> {proposal.estimatedTime}</span>
               </div>
             </div>
-
             {/* Content Sections */}
             <div className="p-8 flex flex-col gap-8">
               {/* Cover Letter Section */}
@@ -114,7 +48,6 @@ export default function ProposalReviewPage() { // Renamed to avoid conflict if a
                 <h3 className="font-semibold text-lg text-primary mb-2">Cover Letter</h3>
                 <p className="text-foreground/90 text-base leading-relaxed">{proposal.coverLetter}</p>
               </div>
-
               {/* Attachments Section */}
               <div className="bg-muted/60 border border-border rounded-xl p-6">
                 <h3 className="font-semibold text-lg text-primary mb-2">Attachments</h3>
@@ -124,7 +57,6 @@ export default function ProposalReviewPage() { // Renamed to avoid conflict if a
                   ))}
                 </ul>
               </div>
-
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <button className="flex-1 bg-gradient-to-r from-green-500 to-green-700 text-white px-8 py-3 rounded-xl font-bold text-lg shadow-md hover:from-green-600 hover:to-green-800 transition">Accept Proposal</button>
@@ -134,6 +66,6 @@ export default function ProposalReviewPage() { // Renamed to avoid conflict if a
           </div>
         </div>
       </div>
-    </ThemeProvider>
+    </>
   );
 }

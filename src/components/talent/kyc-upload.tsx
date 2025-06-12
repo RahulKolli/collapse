@@ -145,10 +145,10 @@ export default function MyForm() {
                         <SelectValue placeholder="Upload Government ID" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
-                      <SelectItem value="aadhaar">Aadhaar</SelectItem>
-                      <SelectItem value="pan">PAN</SelectItem>
-                      <SelectItem value="driving">Driving Licence</SelectItem>
+                    <SelectContent className="">
+                      <SelectItem className="" value="aadhaar">Aadhaar</SelectItem>
+                      <SelectItem className="" value="pan">PAN</SelectItem>
+                      <SelectItem className="" value="driving">Driving Licence</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage className="" />
@@ -236,12 +236,12 @@ export default function MyForm() {
                   </FileUploaderContent>
                 </FileUploader>
               </FormControl>
-              <FormDescription>Select a file to upload.</FormDescription>
+              <FormDescription className="">Select a file to upload.</FormDescription>
               <FormMessage className="" />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full sm:w-auto">Submit</Button>
+        <Button className="w-full sm:w-auto" type="submit" variant="default" size="default">Submit</Button>
       </form>
     </Form>
   )

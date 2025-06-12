@@ -52,21 +52,22 @@ export const columns: ColumnDef<Payment>[] = [
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
+            <Button variant="ghost" size="icon" className="h-8 w-8 p-0">
               <span className="sr-only">Open menu</span>
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuContent align="end" className="">
+            <DropdownMenuLabel className="" inset={false}>Actions</DropdownMenuLabel>
             <DropdownMenuItem
+              className="" inset={false}
               onClick={() => navigator.clipboard.writeText(payment.id)}
             >
               Copy payment ID
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuSeparator className="" />
+            <DropdownMenuItem className="" inset={false}>View customer</DropdownMenuItem>
+            <DropdownMenuItem className="" inset={false}>View payment details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

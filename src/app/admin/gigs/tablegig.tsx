@@ -13,7 +13,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -51,10 +50,9 @@ const chartConfig = {
   },
   other: {
     label: "Other",
-    color: "oklch(0.2157 0.0453 145.7256",
+    color: "oklch(0.2157 0.0453 145.7256)",
   },
-
-} satisfies ChartConfig
+}
 
 export function Componentgig() {
   const totalGigs = React.useMemo(() => {
@@ -71,13 +69,24 @@ export function Componentgig() {
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
+          id="gig-monitor-chart"
           config={chartConfig}
           className="mx-auto aspect-square max-h-[250px]"
         >
           <PieChart>
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              content={(props) => (
+                <ChartTooltipContent
+                  {...(props as any)}
+                  className=""
+                  indicator="dot"
+                  nameKey="gigType"
+                  labelKey="gigType"
+                  color={undefined}
+                  hideLabel
+                />
+              )}
             />
             <Pie
               data={chartData}
@@ -110,7 +119,6 @@ export function Componentgig() {
                         >
                           Total Gigs
                         </tspan>
-
                       </text>
                     )
                   }

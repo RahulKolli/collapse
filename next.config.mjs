@@ -1,8 +1,8 @@
-// next.config.mjs
-// Removed @next/bundle-analyzer integration
-
 const nextConfig = {
+  output: 'export', // Enables static HTML export (replaces `next export` command)
+
   images: {
+    unoptimized: true, // Disable Image Optimization API for static export compatibility
     remotePatterns: [
       {
         protocol: 'https',

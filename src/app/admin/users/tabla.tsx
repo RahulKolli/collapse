@@ -91,6 +91,7 @@ export const columns: ColumnDef<Payment>[] = [
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
+        className=""
       />
     ),
     cell: ({ row }) => (
@@ -98,6 +99,7 @@ export const columns: ColumnDef<Payment>[] = [
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
+        className=""
       />
     ),
     enableSorting: false,
@@ -116,6 +118,8 @@ export const columns: ColumnDef<Payment>[] = [
       return (
         <Button
           variant="ghost"
+          size="sm"
+          className=""
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Email
@@ -149,21 +153,21 @@ export const columns: ColumnDef<Payment>[] = [
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
+            <Button variant="ghost" size="icon" className="h-8 w-8 p-0">
               <span className="sr-only">Open menu</span>
               <DotsHorizontalIcon className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
+          <DropdownMenuContent align="end" className="">
+            <DropdownMenuLabel className="" inset={false}>Actions</DropdownMenuLabel>
+            <DropdownMenuItem className="" inset={false}
               onClick={() => navigator.clipboard.writeText(payment.id)}
             >
               Copy payment ID
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuSeparator className="" />
+            <DropdownMenuItem className="" inset={false}>View customer</DropdownMenuItem>
+            <DropdownMenuItem className="" inset={false}>View payment details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
@@ -203,6 +207,7 @@ export function DataTableDemo() {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
+          type="text"
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
@@ -212,11 +217,11 @@ export function DataTableDemo() {
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" size="sm" className="ml-auto">
               Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="">
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
@@ -242,18 +247,16 @@ export function DataTableDemo() {
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  )
-                })}
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
@@ -296,6 +299,7 @@ export function DataTableDemo() {
           <Button
             variant="outline"
             size="sm"
+            className=""
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
@@ -304,6 +308,7 @@ export function DataTableDemo() {
           <Button
             variant="outline"
             size="sm"
+            className=""
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >

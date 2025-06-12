@@ -96,10 +96,10 @@ export default function MyForm123() {
               <FormLabel className="">Full Name</FormLabel>
               <FormControl>
                 <Input 
-                placeholder="Enter name"
-                
-                type="text"
-                {...field} />
+                  className=""
+                  placeholder="Enter name"
+                  type="text"
+                  {...field} />
               </FormControl>
               <FormDescription className="">This is your public display name.</FormDescription>
               <FormMessage className="" />
@@ -115,6 +115,7 @@ export default function MyForm123() {
               <FormLabel className="">Email</FormLabel>
               <FormControl>
                 <Input 
+                  className=""
                   placeholder="Enter your email"
                   type="email"
                   value={typeof field.value === 'string' ? field.value : ''}
@@ -134,7 +135,7 @@ export default function MyForm123() {
             <FormItem className="">
               <FormLabel className="">Password</FormLabel>
               <FormControl>
-                <PasswordInput placeholder="Enter password" value={typeof field.value === 'string' ? field.value : ''} onChange={field.onChange} />
+                <PasswordInput className="" placeholder="Enter password" value={typeof field.value === 'string' ? field.value : ''} onChange={field.onChange} />
               </FormControl>
               <FormDescription className="">Enter your password.</FormDescription>
               <FormMessage className="" />
@@ -159,8 +160,6 @@ export default function MyForm123() {
                       <FileInput
                         id="fileInput"
                         className="outline-dashed outline-1 outline-slate-500"
-                        value={typeof field.value === 'string' ? field.value : ''}
-                        onChange={field.onChange}
                       >
                         <div className="flex items-center justify-center flex-col p-8 w-full ">
                           <CloudUpload className='text-gray-500 w-10 h-10' />

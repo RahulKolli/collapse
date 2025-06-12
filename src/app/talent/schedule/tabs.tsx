@@ -29,7 +29,7 @@ export function TabsDemo() {
             <CardHeader className="mb-4 p-0">
               <CardTitle className="text-xl font-semibold mb-1">Account</CardTitle>
               <CardDescription className="text-muted-foreground mb-4">
-                Make changes to your account here. Click save when you're done.
+                Make changes to your account here. Click save when you&apos;re done.
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-5 p-0">
@@ -44,7 +44,7 @@ export function TabsDemo() {
               {/* Add more fields here as needed, styled with tabs.tsx conventions */}
             </CardContent>
             <CardFooter className="flex justify-end p-0 mt-6">
-              <Button className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-semibold hover:bg-primary/90 transition">Save changes</Button>
+              <Button variant="default" size="default" className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-semibold hover:bg-primary/90 transition">Save changes</Button>
             </CardFooter>
           </Card>
         </TabsContent>
@@ -53,7 +53,7 @@ export function TabsDemo() {
             <CardHeader className="mb-4 p-0">
               <CardTitle className="text-xl font-semibold mb-1">Password</CardTitle>
               <CardDescription className="text-muted-foreground mb-4">
-                Change your password here. After saving, you'll be logged out.
+                Change your password here. After saving, you&apos;ll be logged out.
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-5 p-0">
@@ -68,7 +68,7 @@ export function TabsDemo() {
               {/* Add more fields here as needed, styled with tabs.tsx conventions */}
             </CardContent>
             <CardFooter className="flex justify-end p-0 mt-6">
-              <Button className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-semibold hover:bg-primary/90 transition">Save password</Button>
+              <Button variant="default" size="default" className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-semibold hover:bg-primary/90 transition">Save password</Button>
             </CardFooter>
           </Card>
         </TabsContent>

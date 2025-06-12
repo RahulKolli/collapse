@@ -12,7 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -38,17 +37,17 @@ const chartConfig = {
     label: "Mobile",
     color: "hsl(var(--chart-2))",
   },
-} satisfies ChartConfig
+}
 
 export function Disputechart() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Line Chart - Multiple</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+    <Card className="">
+      <CardHeader className="">
+        <CardTitle className="">Line Chart - Multiple</CardTitle>
+        <CardDescription className="">January - June 2024</CardDescription>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
+      <CardContent className="">
+        <ChartContainer config={chartConfig} id="dispute-chart" className="">
           <LineChart
             accessibilityLayer
             data={chartData}
@@ -65,7 +64,19 @@ export function Disputechart() {
               tickMargin={8}
               tickFormatter={(value) => value.slice(0, 3)}
             />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <ChartTooltip
+              cursor={false}
+              content={(props) => (
+                <ChartTooltipContent
+                  {...(props as any)}
+                  className=""
+                  indicator="dot"
+                  nameKey="month"
+                  labelKey="month"
+                  color={undefined}
+                />
+              )}
+            />
             <Line
               dataKey="desktop"
               type="monotone"
@@ -83,7 +94,7 @@ export function Disputechart() {
           </LineChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="">
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 font-medium leading-none">

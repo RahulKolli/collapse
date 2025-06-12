@@ -1,12 +1,16 @@
+import Image from "next/image";
+
 export default function TalentProfile() {
   return (
     <div className="max-w-4xl mx-auto px-2 sm:px-6 py-8 md:py-12">
       <div className="bg-card border border-border rounded-3xl shadow-xl overflow-hidden">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row items-center gap-8 p-8 pb-4 bg-gradient-to-br from-primary/5 to-secondary/10">
-          <img
+          <Image
             src="https://via.placeholder.com/150"
             alt="Talent"
+            width={176}
+            height={176}
             className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover border-4 border-primary/30 shadow-lg"
           />
           <div className="flex-1 w-full">
@@ -44,9 +48,9 @@ export default function TalentProfile() {
         <div className="px-8 pb-6">
           <h3 className="text-xl font-semibold text-primary mb-3">Portfolio</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <img src="https://via.placeholder.com/300x200" alt="Project 1" className="rounded-xl border border-muted shadow-sm hover:scale-105 transition-transform duration-200" />
-            <img src="https://via.placeholder.com/300x200" alt="Project 2" className="rounded-xl border border-muted shadow-sm hover:scale-105 transition-transform duration-200" />
-            <img src="https://via.placeholder.com/300x200" alt="Project 3" className="rounded-xl border border-muted shadow-sm hover:scale-105 transition-transform duration-200" />
+            <Image src="https://via.placeholder.com/300x200" alt="Project 1" width={300} height={200} className="rounded-xl border border-muted shadow-sm hover:scale-105 transition-transform duration-200" />
+            <Image src="https://via.placeholder.com/300x200" alt="Project 2" width={300} height={200} className="rounded-xl border border-muted shadow-sm hover:scale-105 transition-transform duration-200" />
+            <Image src="https://via.placeholder.com/300x200" alt="Project 3" width={300} height={200} className="rounded-xl border border-muted shadow-sm hover:scale-105 transition-transform duration-200" />
           </div>
         </div>
 
