@@ -134,15 +134,11 @@ export default function HeroSection() {
                                         ...transitionVariants,
                                     }}
                                     className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row">
-                                    <div
-                                        key={1}
-                                        className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
-                                        <Button asChild size="lg" className="rounded-xl px-5 text-base">
-                                            <Link href="#link">
-                                                <span className="text-nowrap">Start Building</span>
-                                            </Link>
-                                        </Button>
-                                    </div>
+                                    <Button asChild type="button" className="w-full md:w-auto px-8 py-3 text-base rounded-lg bg-primary text-primary-foreground shadow hover:bg-primary/90 transition">
+                                        <Link href="#link">
+                                            <span className="text-nowrap">Start Building</span>
+                                        </Link>
+                                    </Button>
                                     <Button
                                         key={2}
                                         asChild
